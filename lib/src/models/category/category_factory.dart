@@ -6,6 +6,10 @@ class CategoryFactory {
     return Category(
       name: map[Keys.categoryName],
       imagePath: map[Keys.categoryImage],
+      medicines: castListTo<Medicine>(
+        list: map[Keys.categoryMedicines],
+        caster: (e) => MedicineFactory.fromMap(e),
+      ),
     );
   }
 
@@ -13,7 +17,10 @@ class CategoryFactory {
     return <String, dynamic>{
       Keys.categoryName: category.name,
       Keys.categoryImage: category.imagePath,
+      Keys.categoryMedicines: castListTo<Map<String, dynamic>>(
+        list: category.medicines,
+        caster: (medicine) => MedicineFactory.toMap(medicine),
+      ),
     };
   }
-
 }

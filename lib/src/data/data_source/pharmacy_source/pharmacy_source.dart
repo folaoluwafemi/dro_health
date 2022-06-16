@@ -1,48 +1,39 @@
+import 'dart:convert';
+import 'dart:developer' as dev;
+
 import 'package:dro_health/src/data/data_source/pharmacy_source/interface.dart';
-import 'package:dro_health/src/models/medicine/medicine_model.dart';
 import 'package:dro_health/src/models/pharmacy/pharmacy.dart';
-import 'package:dro_health/src/utils/constants/assets.dart';
+import 'package:dro_health/src/models/pharmacy/pharmacy_factory.dart';
+import 'package:dro_health/src/utils/constants/constants.dart';
+import 'package:dro_health/src/utils/error/failure.dart';
+import 'package:http/http.dart';
 
 class PharmacySource implements PharmacySourceInterface {
   @override
-  Future<Pharmacy> get() async {
-    await _createNewPharmacy();
+  final Client client;
 
-    throw UnimplementedError();
-  }
+  PharmacySource(this.client);
 
   @override
-  Future<void> post(Pharmacy pharmacy) async {}
-
-  _createNewPharmacy() {
-    _createMedicines();
-
-    Pharmacy(
-      medicines: medicines,
-      categories: categories,
-    );
+  Future<Pharmacy> getPharmacy() async {
+    Map<String, dynamic> rawData = await _tryRequest();
+    return PharmacyFactory.fromMap(rawData);
   }
 
-  void _createMedicines() {
-    _createMedicine();
+  Future<Map<String, dynamic>> _tryRequest() async {
+    try {
+      return _makeRequest();
+    } catch (e) {
+      dev.log('$e');
+      return Future.error(e, StackTrace.current);
+    }
   }
 
-  void _createMedicine() {
-    Medicine(
-      id: id,
-      name: name,
-      imagePath: imagePath,
-      packSize: packSize,
-      constituents: constituents,
-      dispensationType: dispensationType,
-      type: type,
-      price: price,
-      seller: seller1,
-    );
+  Future<Map<String, dynamic>> _makeRequest() async {
+    Response response = await client.get(Urls.fakePharmacyUrl);
+    if (response.statusCode != 200) {
+      throw Failure('An error occurred', StackTrace.current);
+    }
+    return jsonDecode(response.body);
   }
 }
-
-Seller seller1 = const Seller(
-  name: 'Emzor Pharmaceuticals',
-  imagePath: Assets.emzorLogo,
-);

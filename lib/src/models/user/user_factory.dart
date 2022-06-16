@@ -2,7 +2,7 @@ import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/utils/constants/keys.dart';
 
 class UserFactory {
-  static User createUserFromMap(Map<String, dynamic> map) {
+  static User fromMap(Map<String, dynamic> map) {
     return User(
       favorites: castListTo<String>(
         list: map[Keys.userFavorites],

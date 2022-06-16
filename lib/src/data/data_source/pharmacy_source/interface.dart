@@ -1,9 +1,10 @@
 import 'package:dro_health/src/models/models.dart';
+import 'package:http/http.dart';
 
 abstract class PharmacySourceInterface {
-  Future<Pharmacy> get();
+  final Client client;
 
-  Future<void> post(Pharmacy pharmacy);
+  PharmacySourceInterface(this.client);
+
+  Future<Pharmacy> getPharmacy();
 }
-
-

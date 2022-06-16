@@ -7,6 +7,7 @@ class Keys {
   static const String medicinePackWeight = 'packWeight';
   static const String medicineConstituents = 'constituents';
   static const String medicineDispensationType = 'Dispensation';
+  static const String medicineRequiresPrescription = 'RequiresPrescription';
   static const String medicineType = 'type';
   static const String medicinePrice = 'price';
   static const String medicineSellerName = 'seller';
@@ -21,12 +22,12 @@ class Keys {
   static const String cartMedicine = 'cart';
 
   static const String medicineList = 'medicines';
+  static const String categoryMedicines = 'medicines';
   static const String categoryList = 'categories';
 
 
   static const String categoryName = 'name';
   static const String categoryImage = 'image';
 
-  static const String pharmacyMedicines = 'medicines';
   static const String pharmacyCategories = 'categories';
 }

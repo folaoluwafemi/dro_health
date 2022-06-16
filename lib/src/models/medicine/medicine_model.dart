@@ -14,6 +14,7 @@ class Medicine extends Equatable {
   final String type;
   final double price;
   final Seller seller;
+  final bool requiresPrescription;
 
   const Medicine({
     required this.id,
@@ -22,6 +23,7 @@ class Medicine extends Equatable {
     required this.packSize,
     required this.constituents,
     required this.dispensationType,
+    required this.requiresPrescription,
     required this.type,
     required this.price,
     required this.seller,
@@ -37,6 +39,7 @@ class Medicine extends Equatable {
     String? type,
     double? price,
     Seller? seller,
+    bool? requiresPrescription,
   }) =>
       Medicine(
         id: id ?? this.id,
@@ -48,6 +51,7 @@ class Medicine extends Equatable {
         type: type ?? this.type,
         price: price ?? this.price,
         seller: seller ?? this.seller,
+        requiresPrescription: requiresPrescription ?? this.requiresPrescription,
       );
 
   @override

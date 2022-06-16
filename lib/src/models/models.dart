@@ -5,6 +5,7 @@ export 'package:dro_health/src/models/category/category_factory.dart';
 export 'package:dro_health/src/models/medicine/factories/medicine_factory.dart';
 export 'package:dro_health/src/models/medicine/medicine_model.dart';
 export 'package:dro_health/src/models/pharmacy/pharmacy.dart';
+export 'package:dro_health/src/models/pharmacy/pharmacy_factory.dart';
 export 'package:dro_health/src/models/user/user.dart';
 export 'package:dro_health/src/models/user/user_factory.dart';
 export 'package:dro_health/src/utils/functions/util_functions.dart';
