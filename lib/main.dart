@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   setupLocator();
+
   runApp(const PharmacyApp());
 }
 
