@@ -29,6 +29,23 @@ class AppText extends StatelessWidget {
         fontSize: 12,
       );
 
+  static AppText white(
+    String text, {
+    FontWeight? weight,
+  }) =>
+      AppText(
+        text,
+        color: AppColors.white,
+        weight: weight,
+      );
+
+  static AppText titleWhite(String text) => AppText(
+        text,
+        color: AppColors.white,
+        fontSize: 22,
+        weight: FontWeight.w700,
+      );
+
   static AppText medium(
     String text, {
     Color? color,
@@ -70,6 +87,7 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
+        fontFamily: 'ProximaNova',
         fontSize: fontSize,
         fontWeight: weight,
         color: color,

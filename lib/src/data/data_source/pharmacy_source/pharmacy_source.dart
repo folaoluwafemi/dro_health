@@ -3,7 +3,7 @@ import 'dart:developer' as dev;
 
 import 'package:dro_health/src/data/data_source/pharmacy_source/interface.dart';
 import 'package:dro_health/src/models/pharmacy/pharmacy.dart';
-import 'package:dro_health/src/models/pharmacy/pharmacy_factory.dart';
+import 'package:dro_health/src/models/pharmacy/pharmacy_helper.dart';
 import 'package:dro_health/src/utils/constants/constants.dart';
 import 'package:dro_health/src/utils/error/failure.dart';
 import 'package:http/http.dart';
@@ -17,7 +17,7 @@ class PharmacySource implements PharmacySourceInterface {
   @override
   Future<Pharmacy> getPharmacy() async {
     Map<String, dynamic> rawData = await _tryRequest();
-    return PharmacyFactory.fromMap(rawData);
+    return PharmacyHelper.fromMap(rawData);
   }
 
   Future<Map<String, dynamic>> _tryRequest() async {

@@ -1,7 +1,7 @@
 import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/utils/constants/keys.dart';
 
-class UserFactory {
+class UserHelper {
   static User fromMap(Map<String, dynamic> map) {
     return User(
       favorites: castListTo<String>(
@@ -10,7 +10,7 @@ class UserFactory {
       ),
       cart: castListTo<CartItem>(
         list: map[Keys.userCart],
-        caster: (dynamic rawCart) => CartItemFactory.fromMap(rawCart),
+        caster: (dynamic rawCart) => CartItemHelper.fromMap(rawCart),
       ),
       name: map[Keys.userName],
       email: map[Keys.userEmail],
@@ -24,7 +24,7 @@ class UserFactory {
       Keys.userFavorites: user.favorites,
       Keys.userCart: castListTo<Map<String, dynamic>>(
         list: user.cart,
-        caster: (e) => CartItemFactory.toMap(e as CartItem),
+        caster: (e) => CartItemHelper.toMap(e as CartItem),
       ),
     };
   }

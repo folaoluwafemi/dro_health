@@ -1,11 +1,11 @@
-export 'package:dro_health/src/models/cart/cart_factory.dart';
+export 'package:dro_health/src/models/cart/cart_item_helper.dart';
 export 'package:dro_health/src/models/cart/cart_item_model.dart';
 export 'package:dro_health/src/models/category/category.dart';
-export 'package:dro_health/src/models/category/category_factory.dart';
-export 'package:dro_health/src/models/medicine/factories/medicine_factory.dart';
+export 'package:dro_health/src/models/category/category_helper.dart';
+export 'package:dro_health/src/models/medicine/helpers/medicine_helper.dart';
 export 'package:dro_health/src/models/medicine/medicine_model.dart';
 export 'package:dro_health/src/models/pharmacy/pharmacy.dart';
-export 'package:dro_health/src/models/pharmacy/pharmacy_factory.dart';
+export 'package:dro_health/src/models/pharmacy/pharmacy_helper.dart';
 export 'package:dro_health/src/models/user/user.dart';
 export 'package:dro_health/src/models/user/user_factory.dart';
 export 'package:dro_health/src/utils/functions/util_functions.dart';

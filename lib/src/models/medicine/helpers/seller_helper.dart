@@ -1,6 +1,6 @@
-part of 'medicine_factory.dart';
+part of 'medicine_helper.dart';
 
-class SellerFactory {
+class SellerHelper {
   static Seller fromMap(Map<String, dynamic> map) {
     return Seller(
       name: map[Keys.medicineSellerName],

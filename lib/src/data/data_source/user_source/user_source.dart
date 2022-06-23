@@ -15,7 +15,7 @@ class UserSource implements UserSourceInterface {
   @override
   Future<User> getUser() async {
     Map<String, dynamic> rawUser = await _tryRequest();
-    User newUser = UserFactory.fromMap(rawUser);
+    User newUser = UserHelper.fromMap(rawUser);
     return newUser;
   }
 

@@ -1,4 +1,6 @@
 class Strings {
+  static const String pharmacyText = 'Pharmacy';
+
   static const String pharmacyL = 'pharmacy';
   static const String userL = 'user';
   static const String headache = 'Headache';

@@ -1,6 +1,6 @@
-part of 'medicine_factory.dart';
+part of 'medicine_helper.dart';
 
-class PackSizeFactory {
+class PackSizeHelper {
   static PackSize fromMap(Map<String, dynamic> map) {
     return PackSize(
       unit: map[Keys.medicinePackUnit],

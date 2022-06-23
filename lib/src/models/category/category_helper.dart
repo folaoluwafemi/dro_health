@@ -1,14 +1,14 @@
 import 'package:dro_health/src/models//models.dart';
 import 'package:dro_health/src/utils/constants/keys.dart';
 
-class CategoryFactory {
+class CategoryHelper {
   static Category fromMap(Map<String, dynamic> map) {
     return Category(
       name: map[Keys.categoryName],
       imagePath: map[Keys.categoryImage],
       medicines: castListTo<Medicine>(
         list: map[Keys.categoryMedicines],
-        caster: (e) => MedicineFactory.fromMap(e),
+        caster: (e) => MedicineModelHelper.fromMap(e),
       ),
     );
   }
@@ -19,7 +19,7 @@ class CategoryFactory {
       Keys.categoryImage: category.imagePath,
       Keys.categoryMedicines: castListTo<Map<String, dynamic>>(
         list: category.medicines,
-        caster: (medicine) => MedicineFactory.toMap(medicine),
+        caster: (medicine) => MedicineModelHelper.toMap(medicine),
       ),
     };
   }

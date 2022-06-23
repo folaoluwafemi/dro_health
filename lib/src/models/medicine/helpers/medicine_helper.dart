@@ -5,23 +5,23 @@ import 'package:dro_health/src/utils/constants/assets.dart';
 import 'package:dro_health/src/utils/constants/constants.dart';
 import 'package:dro_health/src/utils/constants/keys.dart';
 
-part 'pack_size_factory.dart';
+part 'pack_size_helper.dart';
 
-part 'seller_factory.dart';
+part 'seller_helper.dart';
 
-class MedicineFactory {
+class MedicineModelHelper {
   static Medicine fromMap(Map<String, dynamic> map) {
     return Medicine(
       id: map[Keys.medicineId],
       name: map[Keys.medicineName],
       imagePath: map[Keys.medicineImagePath],
-      packSize: PackSizeFactory.fromMap(map),
+      packSize: PackSizeHelper.fromMap(map),
       constituents: map[Keys.medicineConstituents],
       dispensationType: map[Keys.medicineConstituents],
       requiresPrescription: map[Keys.medicineRequiresPrescription],
       type: map[Keys.medicineType],
       price: map[Keys.medicinePrice],
-      seller: SellerFactory.fromMap(map),
+      seller: SellerHelper.fromMap(map),
     );
   }
 
@@ -36,8 +36,8 @@ class MedicineFactory {
       Keys.medicinePrice: medicine.price,
       Keys.medicineRequiresPrescription: medicine.requiresPrescription,
     };
-    map.addAll(PackSizeFactory.toMap(medicine.packSize));
-    map.addAll(SellerFactory.toMap(medicine.seller));
+    map.addAll(PackSizeHelper.toMap(medicine.packSize));
+    map.addAll(SellerHelper.toMap(medicine.seller));
     return map;
   }
 

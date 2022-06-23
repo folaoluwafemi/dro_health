@@ -27,7 +27,7 @@ class FakeClient extends FakeClientInterface {
       categories: _createCategories(),
     );
 
-    return jsonEncode(PharmacyFactory.toMap(pharmacy));
+    return jsonEncode(PharmacyHelper.toMap(pharmacy));
   }
 
   List<Category> _createCategories() {
@@ -77,36 +77,36 @@ class FakeClient extends FakeClientInterface {
     ];
   }
 
-  final Medicine _redParacetamol = MedicineFactory.fake(
+  final Medicine _redParacetamol = MedicineModelHelper.fake(
     name: Strings.paracetamol,
     imagePath: Assets.redParacetamol,
     type: MedicineType.tablet,
   );
 
-  final Medicine _orangeParacetamol = MedicineFactory.fake(
+  final Medicine _orangeParacetamol = MedicineModelHelper.fake(
     name: Strings.paracetamol,
     imagePath: Assets.orangeParacetamol,
     type: MedicineType.tablet,
   );
 
-  final Medicine _redIbuprofen = MedicineFactory.fake(
+  final Medicine _redIbuprofen = MedicineModelHelper.fake(
     name: Strings.ibuprofen,
     imagePath: Assets.ibuprofenRed,
     type: MedicineType.tablet,
   );
 
-  final Medicine _orangeIbuprofen = MedicineFactory.fake(
+  final Medicine _orangeIbuprofen = MedicineModelHelper.fake(
     name: Strings.ibuprofen,
     imagePath: Assets.ibuprofenOrange,
     type: MedicineType.tablet,
   );
 
-  final Medicine _doliprane = MedicineFactory.fake(
+  final Medicine _doliprane = MedicineModelHelper.fake(
     name: Strings.doliprane,
     imagePath: Assets.doliprane,
     type: MedicineType.capsule,
   );
-  final Medicine _panadol = MedicineFactory.fake(
+  final Medicine _panadol = MedicineModelHelper.fake(
     name: Strings.panadol,
     imagePath: Assets.panadol,
     type: MedicineType.tablet,
@@ -114,7 +114,7 @@ class FakeClient extends FakeClientInterface {
 
   String getUser() {
     User newUser = _createUser();
-    String rawUser = jsonEncode(UserFactory.toMap(newUser));
+    String rawUser = jsonEncode(UserHelper.toMap(newUser));
     return rawUser;
   }
 
