@@ -1,4 +1,5 @@
 import 'package:dro_health/src/app/theme/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppText extends StatelessWidget {
@@ -17,6 +18,7 @@ class AppText extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  ///size : 12
   static AppText small(
     String text, {
     Color? color,
@@ -26,6 +28,19 @@ class AppText extends StatelessWidget {
         text,
         color: color,
         weight: weight,
+        fontSize: 12,
+      );
+
+  ///size : 12
+  ///weight: FontWeight.w700
+  static AppText smallBold(
+    String text, {
+    Color? color,
+  }) =>
+      AppText(
+        text,
+        color: color,
+        weight: FontWeight.w700,
         fontSize: 12,
       );
 
@@ -58,6 +73,16 @@ class AppText extends StatelessWidget {
         fontSize: 16,
       );
 
+  static AppText bold(
+    String text, {
+    Color? color,
+  }) =>
+      AppText(
+        text,
+        color: color,
+        weight: FontWeight.w700,
+      );
+
   static AppText mediumLarge(
     String text, {
     Color? color,
@@ -67,6 +92,15 @@ class AppText extends StatelessWidget {
         text,
         color: color,
         weight: weight,
+        fontSize: 18,
+      );
+
+  static AppText price(
+    String text,
+  ) =>
+      AppText(
+        text,
+        weight: FontWeight.w700,
         fontSize: 18,
       );
 

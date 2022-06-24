@@ -18,4 +18,5 @@ abstract class Assets {
   ///SVG assets
   static const String locationIcon = 'assets/icons/location_icon.svg';
   static const String deliveryIcon = 'assets/icons/delivery_vehicle_icon.svg';
+  static const String cartIcon = 'assets/icons/cart_icon.svg';
 }

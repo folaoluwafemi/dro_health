@@ -7,6 +7,8 @@ abstract class AppColors {
   static const Color purple = Color(0xff9F5DE2);
   static const Color turquoise = Color(0xff0CB8B6);
   static const Color white = Color(0xffffffff);
+  static const Color paleYellow = Color(0xffF2C94C);
+  static const Color lightGrey = Color(0xffF2F2F2);
 
   static const Color textGrey = Color(0x36363699);
 
@@ -14,5 +16,4 @@ abstract class AppColors {
   static const Color redGradientEnd = Color(0xffE5366A);
   static const Color purpleGradientStart = Color(0xff7A08FA);
   static const Color purpleGradientEnd = Color(0xffAD3BFC);
-
 }
