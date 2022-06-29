@@ -49,13 +49,13 @@ void main() {
     });
     test(
         'when the SearchEvent is added homeBloc emits a HomeState with a list '
-            'of medicines corresponding to the query',
-        () async {
+        'of medicines corresponding to the query', () async {
       //act
       bloc.add(const SearchEvent(query: ''));
       await Future.delayed(Duration.zero);
 
-      expect(bloc.state.search, equals(false));
+      expect(bloc.state.search, equals(true));
+      expect(bloc.state.medicines.isNotEmpty, equals(true));
     });
   });
 }
