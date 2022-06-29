@@ -3,9 +3,25 @@ abstract class Strings {
   /// Strings
   static const String requiresPrescription = 'Requires a prescription';
   static const String checkout = 'Checkout';
+  static const String search = 'Search';
+  static const String category = 'Category';
+  static const String categoriesU = 'CATEGORIES';
+  static const String addToCartU = 'ADD TO CART';
+  static const String suggestionsU = 'SUGGESTIONS';
 
   static const String deliveryIn = 'Delivery In ';
   static const String deliveryLocation = 'Lagos, NG ';
+  static const String viewAllU = 'VIEW ALL';
+
+
+  static const String home = 'Home';
+  static const String doctors = 'Doctors';
+  static const String community = 'Community';
+  static const String profile = 'Profile';
+
+
+
+
 
   ///data Strings
   static const String pharmacyText = 'Pharmacy';

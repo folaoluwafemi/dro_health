@@ -2,22 +2,24 @@ import 'package:dro_health/src/data/data.dart';
 import 'package:dro_health/src/utils/fake/client.dart';
 import 'package:get_it/get_it.dart';
 
-GetIt getIt = GetIt.I;
+GetIt _getIt = GetIt.I;
+
+final locator = _getIt;
 
 void setupLocator() {
-  getIt.registerLazySingleton<UserSourceInterface>(
+  _getIt.registerLazySingleton<UserSourceInterface>(
     () => UserSource(FakeClient()),
   );
-  getIt.registerLazySingleton<PharmacySourceInterface>(
+  _getIt.registerLazySingleton<PharmacySourceInterface>(
     () => PharmacySource(FakeClient()),
   );
-  getIt.registerLazySingleton<CategoryRepositoryInterface>(
-    () => CategoryRepository(getIt<PharmacySourceInterface>()),
+  _getIt.registerLazySingleton<CategoryRepositoryInterface>(
+    () => CategoryRepository(_getIt<PharmacySourceInterface>()),
   );
-  getIt.registerLazySingleton<MedicineRepositoryInterface>(
-    () => MedicineRepository(getIt<PharmacySourceInterface>()),
+  _getIt.registerLazySingleton<MedicineRepositoryInterface>(
+    () => MedicineRepository(_getIt<PharmacySourceInterface>()),
   );
-  getIt.registerLazySingleton<UserRepositoryInterface>(
-    () => UserRepository(getIt<UserSourceInterface>()),
+  _getIt.registerLazySingleton<UserRepositoryInterface>(
+    () => UserRepository(_getIt<UserSourceInterface>()),
   );
 }

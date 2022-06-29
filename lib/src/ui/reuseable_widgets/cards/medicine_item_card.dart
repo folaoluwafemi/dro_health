@@ -1,7 +1,7 @@
 import 'package:dro_health/src/app/theme/colors.dart';
 import 'package:dro_health/src/models/medicine/medicine_model.dart';
-import 'package:dro_health/src/ui/reuseable_widgets/app_text.dart';
-import 'package:dro_health/src/ui/reuseable_widgets/methods.dart';
+import 'package:dro_health/src/ui/reuseable_widgets/functions/methods.dart';
+import 'package:dro_health/src/ui/reuseable_widgets/reusable_widgets.dart';
 import 'package:dro_health/src/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -45,9 +45,15 @@ class MedicineCard extends StatelessWidget {
             ),
             child: medicine.requiresPrescription
                 ? Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.deepBlack.withOpacity(0.5),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(10),
+                      ),
+                    ),
+                    alignment: Alignment.bottomCenter,
                     width: width,
                     height: 21,
-                    color: AppColors.deepBlack.withOpacity(0.5),
                     child: AppText.small(
                       Strings.requiresPrescription,
                       color: AppColors.white,
@@ -62,8 +68,9 @@ class MedicineCard extends StatelessWidget {
               children: [
                 boxHeight(15),
                 AppText.medium(medicine.name),
+                boxHeight(1),
                 AppText(
-                  '${medicine.dispensationType} • ${medicine.packSize.weight}mg',
+                  '${medicine.dispensationType} • ${medicine.packSize.weight.toInt()}mg',
                   color: AppColors.textGrey,
                 ),
                 boxHeight(10),

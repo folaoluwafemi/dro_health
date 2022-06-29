@@ -1,13 +1,15 @@
 import 'package:dro_health/src/app/theme/colors.dart';
-import 'package:dro_health/src/ui/reuseable_widgets/app_text.dart';
+import 'package:dro_health/src/ui/reuseable_widgets/text/app_text.dart';
 import 'package:dro_health/src/utils/constants/assets.dart';
 import 'package:dro_health/src/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CheckoutButton extends StatelessWidget {
   final bool expanded;
   final int items;
+  final double width;
+  final double height;
+
   final VoidCallback onPressed;
 
   const CheckoutButton({
@@ -15,15 +17,17 @@ class CheckoutButton extends StatelessWidget {
     required this.onPressed,
     this.expanded = true,
     Key? key,
+    this.width = 142,
+    this.height = 43,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
+    return RawMaterialButton(
+      onPressed: onPressed,
       child: Container(
-        width: expanded ? null : 43,
-        height: expanded ? null : 43,
+        width: expanded ? width : 43,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(50),
@@ -55,7 +59,7 @@ class CheckoutButton extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 7),
-                    child: SvgPicture.asset(Assets.cartIcon),
+                    child: Image.asset(Assets.cartIcon),
                   ),
                   _ItemCountIcon(
                     items: items,
@@ -65,6 +69,7 @@ class CheckoutButton extends StatelessWidget {
             : Stack(
                 clipBehavior: Clip.none,
                 children: [
+                  Image.asset(Assets.cartIcon),
                   Positioned(
                     left: 14.3333,
                     bottom: 14.3333,
@@ -92,7 +97,10 @@ class _ItemCountIcon extends StatelessWidget {
     return CircleAvatar(
       minRadius: 9,
       backgroundColor: AppColors.paleYellow,
-      child: AppText.smallBold('$items'),
+      child: AppText.smallBold(
+        '$items',
+        color: AppColors.black,
+      ),
     );
   }
 }

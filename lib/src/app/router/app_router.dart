@@ -1,4 +1,4 @@
-import 'package:dro_health/src/ui/home/presentation/home_page.dart';
+import 'package:dro_health/src/ui/home/presentation/home_screen/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -10,8 +10,7 @@ class AppRouter {
         });
       default:
         return MaterialPageRoute(
-          builder: (context) =>
-          const SafeArea(
+          builder: (context) => const SafeArea(
             child: Scaffold(
               body: Center(
                 child: Text('Nothing to see here'),

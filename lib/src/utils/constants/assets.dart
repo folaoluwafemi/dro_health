@@ -15,8 +15,13 @@ abstract class Assets {
   static const String orangeParacetamol =
       'assets/images/paracetamol_orange.png';
 
-  ///SVG assets
-  static const String locationIcon = 'assets/icons/location_icon.svg';
-  static const String deliveryIcon = 'assets/icons/delivery_vehicle_icon.svg';
-  static const String cartIcon = 'assets/icons/cart_icon.svg';
+  ///icon assets
+  static const String locationIcon = 'assets/icons/location_icon.png';
+  static const String communityNavIcon = 'assets/icons/community_nav_icon.png';
+  static const String doctorNavIcon = 'assets/icons/doctor_nav_icon.png';
+  static const String homeNavIcon = 'assets/icons/home_nav_icon.png';
+  static const String profileNavIcon = 'assets/icons/profile_nav_icon.png';
+  static const String pharmacyNavIcon = 'assets/icons/pharmacy_nav_icon.png';
+  static const String deliveryIcon = 'assets/icons/delivery_vehicle_icon.png';
+  static const String cartIcon = 'assets/icons/cart_icon.png';
 }
