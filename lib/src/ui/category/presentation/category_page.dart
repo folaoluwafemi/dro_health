@@ -11,14 +11,30 @@ part 'category_detail_view.dart';
 
 part 'category_view.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends StatefulWidget {
   const CategoryPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<CategoryPage> createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
+  @override
+  void initState() {
+    super.initState();
     context.read<CategoryBloc>().add(FetchCategoryList());
+  }
+
+  @override
+  void dispose() {
+    context.read<CategoryBloc>().add(PageDisposed());
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(
