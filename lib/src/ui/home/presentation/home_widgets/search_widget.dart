@@ -13,7 +13,25 @@ class _SearchWidgetState extends State<_SearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (builderContext) {
+      print('search widget building');
+      print('search widget building');
+      print('search widget building');
+      print('search widget building');
       searchedMedicines = builderContext.watch<HomeBloc>().state.medicines;
+      if (searchedMedicines.isEmpty) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Image.asset(Assets.errorNotFoundImage),
+            AppText.large(
+              Strings.noResultError(_searchController.text),
+              weight: FontWeight.w600,
+            ),
+          ],
+        );
+      }
       return GridView.builder(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,

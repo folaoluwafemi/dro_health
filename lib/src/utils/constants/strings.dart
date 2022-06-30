@@ -13,15 +13,13 @@ abstract class Strings {
   static const String deliveryLocation = 'Lagos, NG ';
   static const String viewAllU = 'VIEW ALL';
 
-
   static const String home = 'Home';
   static const String doctors = 'Doctors';
   static const String community = 'Community';
   static const String profile = 'Profile';
 
-
-
-
+  ///template strings
+  static String noResultError(String val) => 'No results found for "$val"';
 
   ///data Strings
   static const String pharmacyText = 'Pharmacy';

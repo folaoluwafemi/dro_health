@@ -111,27 +111,32 @@ class _HomeViewState extends State<_HomeView> {
             ),
           ),
         ),
-        floatingActionButton: Builder(
-          builder: (checkoutContext) {
-            return CheckoutButton(
-              items: 2,
-              onPressed: () {},
-              expanded: !(checkoutContext.watch<HomeBloc>().state.search),
-            );
-          }
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: navMap.values.toList(),
-          currentIndex: 2,
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-        ),
+        floatingActionButton: Builder(builder: (checkoutContext) {
+          return CheckoutButton(
+            items: 2,
+            onPressed: () {},
+            expanded: !(checkoutContext.watch<HomeBloc>().state.search),
+          );
+        }),
+        bottomNavigationBar: context.watch<HomeBloc>().state.search
+            ? null
+            : BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                items: navMap.values.toList(),
+                currentIndex: 2,
+                showUnselectedLabels: true,
+                showSelectedLabels: true,
+              ),
       ),
     );
   }
 
   void _closeSearch() {
+    _searchController.clear();
+    if (_focusNode.hasFocus) {
+      _focusNode.unfocus();
+    }
+    SystemChannels.textInput.invokeListMethod('TextInput.hide');
     context.read<HomeBloc>().add(EndSearch());
   }
 

@@ -51,6 +51,8 @@ void main() {
         'when the SearchEvent is added homeBloc emits a HomeState with a list '
         'of medicines corresponding to the query', () async {
       //act
+      bloc.add(FetchCategories());
+      await Future.delayed(Duration.zero);
       bloc.add(const SearchEvent(query: ''));
       await Future.delayed(Duration.zero);
 

@@ -55,7 +55,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with ErrorHandler {
     Emitter<HomeState> emit,
   ) {
     emit(
-      state.copyWith(search: false),
+      state.copyWith(
+        medicines: getMedicinesFromCategories(
+          state.categories,
+        ),
+        search: false,
+      ),
     );
   }
 
@@ -69,6 +74,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with ErrorHandler {
 
     emit(
       state.copyWith(
+        search: true,
         medicines: searchedMedicines,
       ),
     );

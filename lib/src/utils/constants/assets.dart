@@ -1,5 +1,7 @@
 abstract class Assets {
-  ///PNG assets
+  ///image assets
+  static const String errorNotFoundImage =
+      'assets/images/not_found_error_image.png';
   static const String appBarRings = 'assets/images/app_bar_rings.png';
   static const String emzorLogo = 'assets/images/emzor_logo.png';
   static const String headacheCategory = 'assets/images/headache_category.png';

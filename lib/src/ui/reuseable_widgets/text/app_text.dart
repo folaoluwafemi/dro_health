@@ -104,6 +104,7 @@ class AppText extends StatelessWidget {
         fontSize: 18,
       );
 
+  ///fontSize: 20
   static AppText large(
     String text, {
     Color? color,

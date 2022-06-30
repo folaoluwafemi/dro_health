@@ -32,7 +32,7 @@ class AppOutlinedButton extends StatelessWidget {
             color: AppColors.purple,
           ),
         ),
-        fillColor: Colors.transparent,
+        fillColor: AppColors.white,
         onPressed: onPressed,
         child: child,
       ),
