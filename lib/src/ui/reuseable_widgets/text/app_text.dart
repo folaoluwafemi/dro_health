@@ -73,6 +73,13 @@ class AppText extends StatelessWidget {
         fontSize: 16,
       );
 
+  static AppText titleMedium(String text) => AppText(
+        text,
+        color: AppColors.black.withOpacity(0.4),
+        weight: FontWeight.w600,
+        fontSize: 16,
+      );
+
   static AppText bold(
     String text, {
     Color? color,

@@ -21,9 +21,10 @@ class _CategoriesListView extends StatelessWidget {
                 Strings.categoriesU,
                 style: context.theme.textTheme.titleMedium,
               ),
-              const TextButton(
-                onPressed: _onViewAllPressed,
-                child: AppText(
+              TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(Routes.categoryPage),
+                child: const AppText(
                   Strings.viewAllU,
                   color: AppColors.purple,
                 ),
@@ -41,7 +42,12 @@ class _CategoriesListView extends StatelessWidget {
             itemBuilder: (context, index) {
               final Category category = categories[index];
               return CategoryCard(
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<CategoryBloc>()
+                      .add(SwitchDetails(detailIndex: index));
+                  Navigator.of(context).pushNamed(Routes.categoryPage);
+                },
                 category: category.name,
                 imagePath: category.imagePath,
               );

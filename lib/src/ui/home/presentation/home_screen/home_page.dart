@@ -1,5 +1,7 @@
+import 'package:dro_health/src/app/router/app_router.dart';
 import 'package:dro_health/src/app/theme/colors.dart';
 import 'package:dro_health/src/models/models.dart';
+import 'package:dro_health/src/ui/category/bloc/category_bloc.dart';
 import 'package:dro_health/src/ui/home/bloc/home_bloc.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/buttons/checkout_button.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/cards/delivery_location_widget.dart';
@@ -16,8 +18,6 @@ part 'package:dro_health/src/ui/home/presentation/home_screen/home_view.dart';
 
 part 'package:dro_health/src/ui/home/presentation/home_widgets/category_list_view.dart';
 
-part 'package:dro_health/src/ui/home/presentation/home_widgets/medicine_grid_view.dart';
-
 part 'package:dro_health/src/ui/home/presentation/home_widgets/search_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,9 +25,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (_) => HomeBloc()..add(FetchCategories()),
-      child: const _HomeView(),
-    );
+    context.read<HomeBloc>().add(FetchCategories());
+    return const _HomeView();
   }
 }

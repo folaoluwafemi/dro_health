@@ -27,6 +27,7 @@ abstract class Strings {
   static const String userL = 'user';
   static const String headache = 'Headache';
   static const String supplements = 'Supplements';
+  static const String supplementsU = 'SUPPLEMENTS';
   static const String infants = 'Infants';
   static const String paracetamol = 'Paracetamol';
   static const String ibuprofen = 'Ibuprofen';

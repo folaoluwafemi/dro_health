@@ -1,9 +1,11 @@
-part of 'package:dro_health/src/ui/home/presentation/home_screen/home_page.dart';
+import 'package:dro_health/src/models/models.dart';
+import 'package:dro_health/src/ui/reuseable_widgets/reusable_widgets.dart';
+import 'package:flutter/material.dart';
 
-class _MedicineGridView extends StatelessWidget {
+class MedicineGridView extends StatelessWidget {
   final List<Medicine> medicines;
 
-  const _MedicineGridView({
+  const MedicineGridView({
     required this.medicines,
     Key? key,
   }) : super(key: key);
@@ -20,7 +22,9 @@ class _MedicineGridView extends StatelessWidget {
       ),
       itemCount: medicines.length,
       itemBuilder: (context, index) {
-        return MedicineCard(medicine: medicines[index]);
+        return MedicineCard(
+          medicine: medicines[index],
+        );
       },
     );
   }
