@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dro_health/src/app/locator/app_locator.dart';
 import 'package:dro_health/src/data/data.dart';
 import 'package:dro_health/src/models/models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'medicine_detail_event.dart';
 
@@ -29,18 +29,24 @@ class MedicineDetailBloc
     Emitter<MedicineDetailState> emit,
   ) async {
     Medicine medicine = state.currentMedicine;
-    List<Medicine> allMedicines = await repo.getAllMedicines();
-    List<Medicine> similarMedicines =
-        allMedicines.where((Medicine testMedicine) {
-      return testMedicine.name.contains(medicine.name) ||
-          testMedicine.seller.name == medicine.seller.name ||
-          testMedicine.constituents == medicine.constituents;
-    }).toList();
 
-    emit(state.copyWith(
-      similarProducts: similarMedicines,
-      status: MedicineDetailStateStatus.loaded,
-    ));
+    try {
+      List<Medicine> allMedicines = await repo.getAllMedicines();
+
+      List<Medicine> similarMedicines =
+          allMedicines.where((Medicine testMedicine) {
+        return testMedicine.name.contains(medicine.name) ||
+            testMedicine.seller.name == medicine.seller.name ||
+            testMedicine.constituents == medicine.constituents;
+      }).toList();
+
+      emit(state.copyWith(
+        similarProducts: similarMedicines,
+        status: MedicineDetailStateStatus.loaded,
+      ));
+    } catch (e) {
+      emit(state.copyWith(status: MedicineDetailStateStatus.error));
+    }
   }
 
   FutureOr<void> _addToCart(

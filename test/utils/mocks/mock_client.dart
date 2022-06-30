@@ -43,7 +43,7 @@ Category headacheCategory = Category(
   imagePath: Assets.headacheCategory,
   medicines: [
     _panadol,
-    _redParacetamol,
+    redParacetamol,
     _orangeParacetamol,
   ],
 );
@@ -59,7 +59,7 @@ Category infantsCategory = Category(
   name: Strings.infants,
   imagePath: Assets.infantCategory,
   medicines: [
-    _redParacetamol,
+    redParacetamol,
     _redIbuprofen,
   ],
 );
@@ -67,7 +67,7 @@ Category coughCategory = Category(
   name: Strings.cough,
   imagePath: Assets.coughCategory,
   medicines: [
-    _redParacetamol,
+    redParacetamol,
     _orangeParacetamol,
     _redIbuprofen,
     _orangeIbuprofen,
@@ -76,7 +76,7 @@ Category coughCategory = Category(
   ],
 );
 
-final Medicine _redParacetamol = MedicineModelHelper.fake(
+final Medicine redParacetamol = MedicineModelHelper.fake(
   name: Strings.paracetamol,
   imagePath: Assets.redParacetamol,
   type: MedicineType.tablet,
