@@ -7,6 +7,9 @@ abstract class Strings {
   static const String category = 'Category';
   static const String categoriesU = 'CATEGORIES';
   static const String addToCartU = 'ADD TO CART';
+  static const String viewCartU = 'VIEW CART';
+    static const String continueShoppingU = 'CONTINUE SHOPPING';
+  static const String addToCart = 'Add To Cart';
   static const String suggestionsU = 'SUGGESTIONS';
 
   static const String deliveryIn = 'Delivery In ';
@@ -17,6 +20,21 @@ abstract class Strings {
   static const String doctors = 'Doctors';
   static const String community = 'Community';
   static const String profile = 'Profile';
+  static const String productDetailsU = 'PRODUCT DETAILS';
+  static const String packSizeU = 'PACK SIZE';
+  static const String productIdU = 'PRODUCT ID';
+  static const String constituentsU = 'CONSTITUENTS';
+  static const String dispensedInU = 'DISPENSED IN';
+  static const String similarProducts = 'Similar Products';
+  static const String productDetailDescription =
+      '1 pack of Emzor Paracetamol (500mg) contains 8 units of 12 tablets.';
+  static const String addedToCartSuccessText =
+      'Emzor paracetamol has been successfully added to cart!';
+
+  static const String soldByU = 'SOLD BY';
+  static const String packsCustom = 'Pack(s)';
+  static const String nariaSymbol = '₦';
+  static const String decimalDoubleZero = '.00';
 
   ///template strings
   static String noResultError(String val) => 'No results found for "$val"';

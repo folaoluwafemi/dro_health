@@ -11,27 +11,10 @@ part 'category_detail_view.dart';
 
 part 'category_view.dart';
 
-class CategoryPage extends StatefulWidget {
+class CategoryPage extends StatelessWidget {
   const CategoryPage({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<CategoryPage> createState() => _CategoryPageState();
-}
-
-class _CategoryPageState extends State<CategoryPage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<CategoryBloc>().add(FetchCategoryList());
-  }
-
-  @override
-  void dispose() {
-    context.read<CategoryBloc>().add(PageDisposed());
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +27,16 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Builder(builder: (context) {
           return Appbar(
             onBackPressed: () {
-              if (context.read<CategoryBloc>().state.detailIndex == null) {
-                Navigator.of(context).pop();
-                return;
-              }
-              context.read<CategoryBloc>().add(const SwitchDetails());
+              // if (context.read<CategoryBloc>().state.detailIndex == null) {
+              context.read<CategoryBloc>().add(PageClosed());
+              Navigator.of(context).pop();
+              return;
+              // }
+              // context.read<CategoryBloc>().add(const SwitchDetails());
             },
-            icon: const DeliveryIcon(),
+            icon: const CartIcon(
+              hasItems: true,
+            ),
           );
         }),
       ),

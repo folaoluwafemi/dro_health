@@ -18,7 +18,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   })  : repo = repository ?? locator<CategoryRepositoryInterface>(),
         super(const CategoryState()) {
     on<FetchCategoryList>(_fetchCategories);
-    on<PageDisposed>(_handlePageDisposed);
+    on<PageClosed>(_handlePageDisposed);
     on<SwitchDetails>(_switchDetails);
   }
 
@@ -46,18 +46,19 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   Future<void> _switchDetails(
       SwitchDetails event, Emitter<CategoryState> emit) async {
+    List<Category>? categories;
     if (state.categories.isEmpty) {
-      add(FetchCategoryList());
-      await Future.delayed(Duration.zero);
+      categories = await repo.getCategories();
     }
     emit(
       state.copyWith(
+        categories: categories,
         detailIndex: event.detailIndex,
       ),
     );
   }
 
-  void _handlePageDisposed(PageDisposed event, Emitter<CategoryState> emit) {
+  void _handlePageDisposed(PageClosed event, Emitter<CategoryState> emit) {
     emit(
       state.copyWith(
         categories: const [],

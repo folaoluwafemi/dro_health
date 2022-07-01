@@ -22,8 +22,10 @@ class _CategoriesListView extends StatelessWidget {
                 style: context.theme.textTheme.titleMedium,
               ),
               TextButton(
-                onPressed: () =>
-                    Navigator.of(context).pushNamed(Routes.categoryPage),
+                onPressed: () {
+                  context.read<CategoryBloc>().add(FetchCategoryList());
+                  Navigator.of(context).pushNamed(Routes.categoryPage);
+                },
                 child: const AppText(
                   Strings.viewAllU,
                   color: AppColors.purple,

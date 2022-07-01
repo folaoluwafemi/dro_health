@@ -1,5 +1,6 @@
 import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 
 List<M> castListTo<M>({
   required List<dynamic> list,
@@ -17,3 +18,15 @@ List<Medicine> getMedicinesFromCategories(List<Category> categories) {
   }
   return medicines.removeRepetitions();
 }
+
+BorderRadius circularRadius(double value) => BorderRadius.all(
+      Radius.circular(value),
+    );
+
+BorderRadius verticalCircularRadius(double value, {bool top = true}) => top
+    ? BorderRadius.vertical(
+        top: Radius.circular(value),
+      )
+    : BorderRadius.vertical(
+        bottom: Radius.circular(value),
+      );

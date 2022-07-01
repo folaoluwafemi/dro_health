@@ -17,7 +17,7 @@ class SwitchDetails extends CategoryEvent {
   @override
   List<Object?> get props => [detailIndex];
 }
-class PageDisposed extends CategoryEvent {
+class PageClosed extends CategoryEvent {
   @override
   List<Object?> get props => [];
 }

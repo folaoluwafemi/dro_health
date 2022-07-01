@@ -18,6 +18,16 @@ abstract class Assets {
       'assets/images/paracetamol_orange.png';
 
   ///icon assets
+  ///
+  ///
+  ///
+  static const String constituentIcon = 'assets/icons/constituent_icon.png';
+  static const String dispensationIcon = 'assets/icons/dispensation_icon.png';
+  static const String packSizeIcon = 'assets/icons/pack_size_icon.png';
+  static const String productIdIcon = 'assets/icons/product_id_icon.png';
+  static const String favoriteIcon = 'assets/icons/favorite_icon.png';
+  static const String favoriteIconFilled =
+      'assets/icons/favorite_icon_filled.png';
   static const String locationIcon = 'assets/icons/location_icon.png';
   static const String communityNavIcon = 'assets/icons/community_nav_icon.png';
   static const String doctorNavIcon = 'assets/icons/doctor_nav_icon.png';

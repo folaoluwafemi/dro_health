@@ -23,7 +23,7 @@ class PharmacyApp extends StatelessWidget {
           create: (context) => HomeBloc(),
         ),
         BlocProvider<CategoryBloc>(
-          create: (context) => CategoryBloc(),
+          create: (context) => CategoryBloc()..add(FetchCategoryList()),
         ),
       ],
       child: MainWrapper(

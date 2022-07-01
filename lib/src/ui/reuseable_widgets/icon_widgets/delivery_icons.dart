@@ -13,6 +13,8 @@ class DeliveryIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
+      fit: StackFit.loose,
       children: [
         Image.asset(Assets.deliveryIcon),
         if (isDelivering)

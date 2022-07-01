@@ -49,5 +49,14 @@ void main() {
       await Future.delayed(Duration.zero);
       expect(bloc.state.packQuantity, equals(2));// same as added quantity
     });
+
+    test(
+        'on AddToCart added state\'s added to cart should be equal to true',
+        () async {
+      //act
+      bloc.add(AddedToCart());
+      await Future.delayed(Duration.zero);
+      expect(bloc.state.addedToCart, equals(true));// same as added quantity
+    });
   });
 }

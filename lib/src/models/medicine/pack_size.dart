@@ -20,6 +20,11 @@ class PackSize extends Equatable {
         weight,
       ];
 
+  @override
+  String toString() {
+    return '$unit x $tablets ($totalSize)';
+  }
+
   PackSize copyWith({
     int? unit,
     int? tablets,

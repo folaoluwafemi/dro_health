@@ -44,6 +44,7 @@ class FilledButton extends StatelessWidget {
             ],
           ),
         ),
+        alignment: Alignment.center,
         child: child,
       ),
     );

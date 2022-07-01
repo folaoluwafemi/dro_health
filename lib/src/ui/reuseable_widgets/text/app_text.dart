@@ -31,6 +31,45 @@ class AppText extends StatelessWidget {
         fontSize: 12,
       );
 
+  ///size : 15
+  static AppText outlinedButton(
+    String text, {
+    Color? color,
+    FontWeight? weight,
+  }) =>
+      AppText(
+        text,
+        color: AppColors.purple,
+        weight: FontWeight.w700,
+        fontSize: 15,
+      );
+
+  ///size : 15
+  static AppText filledButton(
+    String text, {
+    Color? color,
+    FontWeight? weight,
+  }) =>
+      AppText(
+        text,
+        color: AppColors.white,
+        weight: FontWeight.w700,
+        fontSize: 15,
+      );
+
+  ///size : 10
+  static AppText tiny(
+    String text, {
+    Color? color,
+    FontWeight? weight,
+  }) =>
+      AppText(
+        text,
+        color: color,
+        weight: weight,
+        fontSize: 10,
+      );
+
   ///size : 12
   ///weight: FontWeight.w700
   static AppText smallBold(
@@ -90,6 +129,7 @@ class AppText extends StatelessWidget {
         weight: FontWeight.w700,
       );
 
+  ///fontSize: 18
   static AppText mediumLarge(
     String text, {
     Color? color,
@@ -116,11 +156,13 @@ class AppText extends StatelessWidget {
     String text, {
     Color? color,
     FontWeight? weight,
+    TextAlign? textAlign,
   }) =>
       AppText(
         text,
         color: color,
         weight: weight,
+        textAlign: textAlign,
         fontSize: 20,
       );
 

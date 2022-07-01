@@ -13,8 +13,14 @@ class CartIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
+      fit: StackFit.loose,
       children: [
-        Image.asset(Assets.cartIcon),
+        Image.asset(
+          Assets.cartIcon,
+          height: 21,
+          width: 23,
+        ),
         if (hasItems)
           const Positioned(
             left: 19,

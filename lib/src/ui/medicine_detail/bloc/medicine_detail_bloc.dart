@@ -53,7 +53,9 @@ class MedicineDetailBloc
     AddedToCart event,
     Emitter<MedicineDetailState> emit,
   ) {
-    ///todo: add to cart
+    emit(state.copyWith(
+      addedToCart: true,
+    ));
   }
 
   void _changePacketQuantity(
