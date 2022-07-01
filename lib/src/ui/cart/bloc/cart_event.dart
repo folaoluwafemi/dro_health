@@ -10,16 +10,16 @@ class CartFetched extends CartEvent {
 }
 
 class CartItemCountChanged extends CartEvent {
-  final int index;
+  final CartItem item;
   final int newCount;
 
   const CartItemCountChanged({
-    required this.index,
+    required this.item,
     required this.newCount,
   });
 
   @override
-  List<Object?> get props => [index, newCount];
+  List<Object?> get props => [item, newCount];
 }
 
 class CartItemRemoved extends CartEvent {

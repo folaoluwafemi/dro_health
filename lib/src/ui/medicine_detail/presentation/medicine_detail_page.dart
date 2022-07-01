@@ -1,3 +1,4 @@
+import 'package:dro_health/src/app/app_barrel.dart';
 import 'package:dro_health/src/app/theme/colors.dart';
 import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/ui/medicine_detail/bloc/medicine_detail_bloc.dart';
@@ -34,8 +35,9 @@ class _MedicinePageState extends State<MedicinePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          MedicineDetailBloc(widget.medicine)..add(SimilarProductsFetched()),
+      create: (_) => MedicineDetailBloc(
+        widget.medicine,
+      )..add(SimilarProductsFetched()),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size(
@@ -44,7 +46,17 @@ class _MedicinePageState extends State<MedicinePage> {
           ),
           child: Appbar(
             onBackPressed: () => Navigator.of(context).pop(),
-            icon: const CartIcon(hasItems: true),
+            icon: Builder(builder: (builderContext) {
+              return CartIcon(
+                hasItems: builderContext
+                        .watch<UserBloc>()
+                        .state
+                        .user
+                        ?.cart
+                        .isNotEmpty ??
+                    false,
+              );
+            }),
             title: Strings.pharmacyText,
           ),
         ),
@@ -86,7 +98,7 @@ class AddToCartBottomSheet extends StatelessWidget {
       enableDrag: true,
       builder: (sheetContext) {
         return Container(
-          height: context.queryScreenSize.height * 0.43,
+          height: context.queryScreenSize.height * 0.45,
           constraints: const BoxConstraints.tightForFinite(),
           decoration: BoxDecoration(
             borderRadius: verticalCircularRadius(30),
@@ -107,14 +119,17 @@ class AddToCartBottomSheet extends StatelessWidget {
               FilledButton(
                 height: 50,
                 width: double.maxFinite,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed(Routes.cartPage);
+                },
                 child: AppText.filledButton(Strings.viewCartU),
               ),
               boxHeight(19),
               AppOutlinedButton(
                 height: 50,
                 width: double.maxFinite,
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).pop(),
                 child: AppText.outlinedButton(Strings.continueShoppingU),
               ),
               boxHeight(35),

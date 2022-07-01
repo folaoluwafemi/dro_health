@@ -29,6 +29,9 @@ class Medicine extends Equatable {
     required this.seller,
   });
 
+  String get priceAmount => '₦${price.toStringAsFixed(2)}';
+
+
   Medicine copyWith({
     String? id,
     String? name,

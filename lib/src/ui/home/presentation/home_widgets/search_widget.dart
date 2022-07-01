@@ -45,7 +45,15 @@ class _SearchWidgetState extends State<_SearchWidget> {
         itemBuilder: (context, index) {
           return MedicineCartCard(
             onAddToCartPressed: () {
-              ///todo: implement cart
+              context.read<UserBloc>().add(UserCartItemAdded(CartItem(
+                    medicine: searchedMedicines[index],
+                    quantity: 1,
+                  )));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: AppText('Success'),
+                ),
+              );
             },
             medicine: searchedMedicines[index],
           );

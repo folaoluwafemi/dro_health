@@ -1,7 +1,7 @@
+import 'package:dro_health/src/app/app_barrel.dart';
 import 'package:dro_health/src/app/theme/colors.dart';
 import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/ui/category/bloc/category_bloc.dart';
-import 'package:dro_health/src/ui/reuseable_widgets/functions/methods.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/reusable_widgets.dart';
 import 'package:dro_health/src/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +34,17 @@ class CategoryPage extends StatelessWidget {
               // }
               // context.read<CategoryBloc>().add(const SwitchDetails());
             },
-            icon: const CartIcon(
-              hasItems: true,
-            ),
+            icon: Builder(builder: (builderContext) {
+              return CartIcon(
+                hasItems: builderContext
+                        .watch<UserBloc>()
+                        .state
+                        .user
+                        ?.cart
+                        .isNotEmpty ??
+                    false,
+              );
+            }),
           );
         }),
       ),

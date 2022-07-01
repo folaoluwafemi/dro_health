@@ -17,7 +17,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   UserBloc({UserRepositoryInterface? repository})
       : repo = repository ?? locator<UserRepositoryInterface>(),
-        super(const UserState()) {
+        super(UserState()) {
     on<UserFetched>(_fetchUser);
     on<UserCartItemRemoved>(_removeCartItem);
     on<UserCartItemAdded>(_addCartItem);
@@ -54,8 +54,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     List<CartItem> newCart = state.user?.cart ?? [];
+    CartItem cartItem = event.cartItem;
+
+    if (newCart.contains(cartItem)) {
+      final int index = newCart.indexWhere((element) => element == cartItem);
+      int newQuantity = cartItem.quantity;
+      cartItem = cartItem.copyWith(
+        quantity: ++newQuantity,
+      );
+      newCart.remove(cartItem);
+      newCart.replaceRange(index, index, [cartItem]);
+    }
 
     newCart.add(event.cartItem);
+
     emit(
       state.copyWith(
         user: state.user?.copyWith(cart: newCart),

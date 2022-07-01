@@ -13,7 +13,7 @@ part 'cart_state.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final UserBloc userBloc;
 
-  CartBloc({required this.userBloc}) : super(const CartState()) {
+  CartBloc({required this.userBloc}) : super(CartState()) {
     on<CartFetched>(_fetchCart);
     on<CartItemCountChanged>(_changeCartItemCount);
     on<CartItemRemoved>(_removeCartItem);
@@ -45,14 +45,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     CartItemCountChanged event,
     Emitter<CartState> emit,
   ) {
-    CartItem item = state.cartItems[event.index];
-    item = item.copyWith(
-      quantity: event.newCount,
-    );
+    CartItem item = event.item.copyWith(quantity: event.newCount);
 
     List<CartItem> newCart = state.cartItems;
 
-    newCart.replaceRange(event.index, event.index, [item]);
+    int index = newCart.indexWhere((element) => element == event.item);
+    newCart.removeAt(index);
+    newCart.replaceRange(index, index, [item]);
 
     emit(state.copyWith(cartItems: newCart));
   }

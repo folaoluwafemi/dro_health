@@ -42,6 +42,8 @@ flutter:
           weight: 600
         - asset: assets/fonts/Proxima-Nova-Bold.otf
           weight: 700
+        - asset: assets/fonts/Proxima-Nova-Thin.otf
+          weight: 200
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

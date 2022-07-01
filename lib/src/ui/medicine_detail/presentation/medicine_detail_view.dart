@@ -97,17 +97,43 @@ class _MedicineDetailView extends StatelessWidget {
                     Strings.similarProducts,
                     weight: FontWeight.w700,
                   ),
-                  boxHeight(17),
-                  const SimilarProductList(),
+                ],
+              ),
+            ),
+            boxHeight(17),
+            const SimilarProductList(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35),
+              child: Column(
+                children: [
                   boxHeight(44),
                   AddToCartButton(
-                    onPressed: () =>
-                        context.read<MedicineDetailBloc>().add(AddedToCart()),
+                    onPressed: () {
+                      int packQuantity =
+                          context.read<MedicineDetailBloc>().state.packQuantity;
+                      if (packQuantity == 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: AppColors.purple,
+                            content: AppText(
+                              'Please increase item count',
+                              color: AppColors.white,
+                            ),
+                          ),
+                        );
+                        return;
+                      }
+                      context.read<UserBloc>().add(UserCartItemAdded(CartItem(
+                            quantity: packQuantity,
+                            medicine: medicine,
+                          )));
+                      context.read<MedicineDetailBloc>().add(AddedToCart());
+                    },
                   ),
                   boxHeight(27),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -128,7 +154,9 @@ class AddToCartButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CartIcon(),
+          const CartIcon(
+            hasItems: false,
+          ),
           boxWidth(12),
           const AppText(
             Strings.addToCart,

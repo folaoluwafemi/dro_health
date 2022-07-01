@@ -23,7 +23,7 @@ class MedicineCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(
-          Routes.medicineDetail,
+          Routes.medicineDetailPage,
           arguments: medicine,
         );
       },

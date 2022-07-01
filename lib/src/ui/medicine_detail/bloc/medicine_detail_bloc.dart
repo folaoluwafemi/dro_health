@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dro_health/src/app/app_barrel.dart';
 import 'package:dro_health/src/app/locator/app_locator.dart';
 import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/models/models.dart';

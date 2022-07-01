@@ -1,4 +1,4 @@
-import 'package:dro_health/src/app/theme/colors.dart';
+import 'package:dro_health/src/app/app_barrel.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/text/app_text.dart';
 import 'package:dro_health/src/utils/constants/assets.dart';
 import 'package:dro_health/src/utils/constants/strings.dart';
@@ -10,11 +10,8 @@ class CheckoutButton extends StatelessWidget {
   final double width;
   final double height;
 
-  final VoidCallback onPressed;
-
   const CheckoutButton({
     required this.items,
-    required this.onPressed,
     this.expanded = true,
     Key? key,
     this.width = 142,
@@ -24,7 +21,7 @@ class CheckoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: onPressed,
+      onPressed: () => Navigator.of(context).pushNamed(Routes.cartPage),
       child: Container(
         width: expanded ? width : 43,
         height: height,

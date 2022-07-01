@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+SizedBox zeroBox() => const SizedBox(
+      height: 0,
+      width: 0,
+    );
 SizedBox boxHeight(double height) => SizedBox(
       height: height,
     );

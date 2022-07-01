@@ -14,6 +14,7 @@ class CartAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 120,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -32,10 +33,11 @@ class CartAppBar extends StatelessWidget {
           fit: BoxFit.fitHeight,
         ),
       ),
+      alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.only(
         left: 24,
         right: 24,
-        bottom: 21,
+        bottom: 30,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +50,9 @@ class CartAppBar extends StatelessWidget {
                 child: const Icon(Icons.arrow_back_ios),
               ),
             ),
-          const CartIcon(),
+          const CartIcon(
+            hasItems: false,
+          ),
           boxWidth(15),
           AppText.titleWhite(
             Strings.cart,

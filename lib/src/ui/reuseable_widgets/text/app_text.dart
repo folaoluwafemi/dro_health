@@ -100,6 +100,7 @@ class AppText extends StatelessWidget {
         weight: FontWeight.w700,
       );
 
+  ///fontSize: 16
   static AppText medium(
     String text, {
     Color? color,

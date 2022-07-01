@@ -30,3 +30,36 @@ BorderRadius verticalCircularRadius(double value, {bool top = true}) => top
     : BorderRadius.vertical(
         bottom: Radius.circular(value),
       );
+
+bool checkListEquality(List list1, List list2) {
+  if (list1.length != list2.length) {
+    return false;
+  }
+  int len = list1.length;
+  int count = 0;
+  while (count < len) {
+    if (list1[count] == list2[count]) {
+      return true;
+    }
+    ++count;
+  }
+  return false;
+}
+
+bool cartContainsMedicine(List<CartItem> cart, Medicine medicine) {
+  for (CartItem cartItem in cart) {
+    if (cartItem.medicine.id == medicine.id) {
+      return true;
+    }
+  }
+  return false;
+}
+
+CartItem? searchCartForCartItemFromMedicine(List<CartItem> cart, Medicine medicine) {
+  for (CartItem cartItem in cart) {
+    if (cartItem.medicine.id == medicine.id) {
+      return cartItem;
+    }
+  }
+  return null;
+}

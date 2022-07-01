@@ -21,10 +21,7 @@ class _HomeViewState extends State<_HomeView> {
       }
     });
     super.initState();
-    categories = context
-        .read<HomeBloc>()
-        .state
-        .categories;
+    categories = context.read<HomeBloc>().state.categories;
   }
 
   @override
@@ -46,10 +43,7 @@ class _HomeViewState extends State<_HomeView> {
           ),
           child: Builder(builder: (appBarContext) {
             return Appbar(
-              onBackPressed: appBarContext
-                  .watch<HomeBloc>()
-                  .state
-                  .search
+              onBackPressed: appBarContext.watch<HomeBloc>().state.search
                   ? _closeSearch
                   : null,
               icon: const DeliveryIcon(),
@@ -101,7 +95,7 @@ class _HomeViewState extends State<_HomeView> {
                           child: Text(
                             Strings.suggestionsU,
                             style:
-                            context.theme.textTheme.titleMedium?.copyWith(
+                                context.theme.textTheme.titleMedium?.copyWith(
                               color: AppColors.black.withOpacity(0.4),
                             ),
                           ),
@@ -119,26 +113,19 @@ class _HomeViewState extends State<_HomeView> {
         ),
         floatingActionButton: Builder(builder: (checkoutContext) {
           return CheckoutButton(
-            items: 2,
-            onPressed: () {},
-            expanded: !(checkoutContext
-                .watch<HomeBloc>()
-                .state
-                .search),
+            items: checkoutContext.watch<UserBloc>().state.user?.cart.length ?? 0,
+            expanded: !(checkoutContext.watch<HomeBloc>().state.search),
           );
         }),
-        bottomNavigationBar: context
-            .watch<HomeBloc>()
-            .state
-            .search
+        bottomNavigationBar: context.watch<HomeBloc>().state.search
             ? null
             : BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: navMap.values.toList(),
-          currentIndex: 2,
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-        ),
+                type: BottomNavigationBarType.fixed,
+                items: navMap.values.toList(),
+                currentIndex: 2,
+                showUnselectedLabels: true,
+                showSelectedLabels: true,
+              ),
       ),
     );
   }
@@ -159,8 +146,6 @@ class _HomeViewState extends State<_HomeView> {
     context.read<HomeBloc>().add(SearchEvent(query: value));
   }
 }
-
-
 
 Map<HomeNavItem, BottomNavigationBarItem> navMap = {
   HomeNavItem.home: BottomNavigationBarItem(

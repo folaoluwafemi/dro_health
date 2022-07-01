@@ -67,7 +67,7 @@ class MedicineModelHelper {
 
   static String generateConstituents() {
     int randInt = Random().nextInt(10);
-    return (randInt.isEven) ? 'Paracetamol' : 'Aspirin';
+    return (randInt.isEven) ? 'Capsule' : 'Tablet';
   }
 
   static PackSize generatePackSize() {

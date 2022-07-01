@@ -13,3 +13,14 @@ class Urls {
   static Uri fakePharmacyUrl = Uri.http('www.fake.url', Strings.pharmacyL);
   static Uri fakeUserUrl = Uri.http('www.fake.url', Strings.userL);
 }
+
+List<int> eightInts = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+];

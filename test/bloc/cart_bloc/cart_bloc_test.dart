@@ -52,7 +52,7 @@ void main() {
         () async {
       bloc.add(CartFetched());
       await Future.delayed(Duration.zero);
-      bloc.add(const CartItemCountChanged(index: 0, newCount: 3));
+      bloc.add(CartItemCountChanged(item: cartItem1, newCount: 3));
       await Future.delayed(Duration.zero);
       expect(bloc.state.cartItems[0], cartItem1.copyWith(quantity: 3));
     });
@@ -87,7 +87,7 @@ void main() {
       bloc.add(CartFetched());
       await Future.delayed(Duration.zero);
       //act
-      bloc.add(const CartItemCountChanged(index: 0, newCount: 3));
+      bloc.add(CartItemCountChanged(item: cartItem1, newCount: 3));
       await Future.delayed(Duration.zero);
       bloc.add(CheckedOut());
       await Future.delayed(Duration.zero);

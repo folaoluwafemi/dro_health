@@ -20,6 +20,8 @@ class PackSize extends Equatable {
         weight,
       ];
 
+  String get weightString => '${weight.toStringAsFixed(0)}mg';
+
   @override
   String toString() {
     return '$unit x $tablets ($totalSize)';

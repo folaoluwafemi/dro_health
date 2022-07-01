@@ -21,6 +21,7 @@ abstract class Strings {
 
   static const String home = 'Home';
   static const String doctors = 'Doctors';
+  static const String totalLeadingText = 'Total:';
   static const String community = 'Community';
   static const String profile = 'Profile';
   static const String productDetailsU = 'PRODUCT DETAILS';

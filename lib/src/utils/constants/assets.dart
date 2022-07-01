@@ -26,6 +26,7 @@ abstract class Assets {
   static const String packSizeIcon = 'assets/icons/pack_size_icon.png';
   static const String productIdIcon = 'assets/icons/product_id_icon.png';
   static const String favoriteIcon = 'assets/icons/favorite_icon.png';
+  static const String removeIcon = 'assets/icons/remove_icon.png';
   static const String favoriteIconFilled =
       'assets/icons/favorite_icon_filled.png';
   static const String locationIcon = 'assets/icons/location_icon.png';
