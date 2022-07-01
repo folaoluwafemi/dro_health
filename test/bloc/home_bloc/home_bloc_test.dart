@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/ui/home/bloc/home_bloc.dart';
+import 'package:dro_health/src/utils/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../utils/mocks/mock_client.dart';
@@ -9,14 +10,14 @@ void main() {
   PharmacySource mockSource = PharmacySource(MockClient());
   CategoryRepository mockRepo = CategoryRepository(mockSource);
 
-  group('tests for home bloc', () {
+  group('tests for home blocs', () {
     late HomeBloc bloc;
     setUp(() {
       bloc = HomeBloc(categoryRepository: mockRepo);
     });
 
     blocTest(
-      'when the bloc is initialized the state is empty',
+      'when the blocs is initialized the state is empty',
       build: () => bloc,
       expect: () => [],
     );
@@ -25,7 +26,7 @@ void main() {
       bloc.add(FetchCategories());
       await Future.delayed(Duration.zero);
 
-      expect(bloc.state.status, equals(HomeStateStatus.loaded));
+      expect(bloc.state.status, equals(StateStatus.loaded));
       expect(bloc.state.categories.isNotEmpty, equals(true));
       expect(bloc.state.search, equals(false));
     });

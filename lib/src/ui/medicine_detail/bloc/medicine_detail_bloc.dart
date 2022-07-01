@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:dro_health/src/app/locator/app_locator.dart';
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/models/models.dart';
+import 'package:dro_health/src/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,10 +43,10 @@ class MedicineDetailBloc
 
       emit(state.copyWith(
         similarProducts: similarMedicines,
-        status: MedicineDetailStateStatus.loaded,
+        status: StateStatus.loaded,
       ));
     } catch (e) {
-      emit(state.copyWith(status: MedicineDetailStateStatus.error));
+      emit(state.copyWith(status: StateStatus.error));
     }
   }
 

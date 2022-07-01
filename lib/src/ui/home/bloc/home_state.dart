@@ -1,12 +1,7 @@
 part of 'home_bloc.dart';
 
-enum HomeStateStatus {
-  loading,
-  loaded,
-}
-
 class HomeState extends Equatable {
-  final HomeStateStatus status;
+  final StateStatus status;
   final List<Category> categories;
   final List<Medicine> medicines;
   final bool search;
@@ -14,13 +9,13 @@ class HomeState extends Equatable {
   const HomeState(
       {
     this.medicines = const [],
-    this.status = HomeStateStatus.loading,
+    this.status = StateStatus.loading,
     this.search = false,
     this.categories = const [],
   });
 
   HomeState copyWith({
-    HomeStateStatus? status,
+    StateStatus? status,
     List<Category>? categories,
     List<Medicine>? medicines,
     bool? search,

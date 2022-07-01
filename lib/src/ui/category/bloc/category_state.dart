@@ -1,24 +1,19 @@
 part of 'category_bloc.dart';
 
-enum CategoryStateStatus {
-  loading,
-  loaded,
-}
-
 class CategoryState extends Equatable {
   final List<Category> categories;
-  final CategoryStateStatus status;
+  final StateStatus status;
   final int? detailIndex;
 
   const CategoryState({
-    this.status = CategoryStateStatus.loading,
+    this.status = StateStatus.loading,
     this.categories = const [],
     this.detailIndex,
   });
 
   CategoryState copyWith({
     List<Category>? categories,
-    CategoryStateStatus? status,
+    StateStatus? status,
     int? detailIndex,
   }) =>
       CategoryState(

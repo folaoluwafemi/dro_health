@@ -1,6 +1,4 @@
-import 'package:dro_health/src/app/locator/app_locator.dart';
-import 'package:dro_health/src/app/router/app_router.dart';
-import 'package:dro_health/src/app/theme/app_theme.dart';
+import 'package:dro_health/src/app/app_barrel.dart';
 import 'package:dro_health/src/ui/category/bloc/category_bloc.dart';
 import 'package:dro_health/src/ui/home/bloc/home_bloc.dart';
 import 'package:dro_health/src/utils/widget/app_wrapper.dart';
@@ -19,6 +17,9 @@ class PharmacyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<UserBloc>(
+          create: (context) => UserBloc()..add(UserFetched()),
+        ),
         BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(),
         ),

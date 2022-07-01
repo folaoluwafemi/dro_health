@@ -82,7 +82,7 @@ class _HomeViewState extends State<_HomeView> {
                     if (state.search == true) {
                       return const _SearchWidget();
                     }
-                    if (state.status == HomeStateStatus.loading) {
+                    if (state.status == StateStatus.loading) {
                       return Column(
                         children: const [
                           Spacer(),

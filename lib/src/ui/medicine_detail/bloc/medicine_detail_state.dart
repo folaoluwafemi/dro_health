@@ -1,22 +1,17 @@
 part of 'medicine_detail_bloc.dart';
 
-enum MedicineDetailStateStatus {
-  loading,
-  loaded,
-  error,
-}
 
 class MedicineDetailState extends Equatable {
   final List<Medicine> similarProducts;
   final Medicine currentMedicine;
-  final MedicineDetailStateStatus status;
+  final StateStatus status;
   final bool addedToCart;
   final int packQuantity;
 
   const MedicineDetailState(
     this.currentMedicine, {
     this.similarProducts = const [],
-    this.status = MedicineDetailStateStatus.loading,
+    this.status = StateStatus.loading,
     this.packQuantity = 0,
     this.addedToCart = false,
   });
@@ -33,7 +28,7 @@ class MedicineDetailState extends Equatable {
   MedicineDetailState copyWith({
     List<Medicine>? similarProducts,
     Medicine? currentMedicine,
-    MedicineDetailStateStatus? status,
+    StateStatus? status,
     bool? addedToCart,
     int? packQuantity,
   }) =>

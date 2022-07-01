@@ -1,8 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/ui/medicine_detail/bloc/medicine_detail_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../utils/fake_data/fake_data.dart';
 import '../../utils/mocks/mock_client.dart';
 
 void main() {
@@ -47,16 +48,15 @@ void main() {
       //act
       bloc.add(const PacketQuantityChanged(2));
       await Future.delayed(Duration.zero);
-      expect(bloc.state.packQuantity, equals(2));// same as added quantity
+      expect(bloc.state.packQuantity, equals(2)); // same as added quantity
     });
 
-    test(
-        'on AddToCart added state\'s added to cart should be equal to true',
+    test('on AddToCart added state\'s added to cart should be equal to true',
         () async {
       //act
       bloc.add(AddedToCart());
       await Future.delayed(Duration.zero);
-      expect(bloc.state.addedToCart, equals(true));// same as added quantity
+      expect(bloc.state.addedToCart, equals(true)); // same as added quantity
     });
   });
 }

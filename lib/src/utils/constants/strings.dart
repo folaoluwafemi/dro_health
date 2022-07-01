@@ -3,6 +3,9 @@ abstract class Strings {
   /// Strings
   static const String requiresPrescription = 'Requires a prescription';
   static const String checkout = 'Checkout';
+  static const String checkoutU = 'CHECKOUT';
+  static const String cart = 'Cart';
+  static const String remove = 'Remove';
   static const String search = 'Search';
   static const String category = 'Category';
   static const String categoriesU = 'CATEGORIES';

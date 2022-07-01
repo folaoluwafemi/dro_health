@@ -3,6 +3,7 @@ export 'package:dro_health/src/ui/reuseable_widgets/buttons/filled_button.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/buttons/outlined_button.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/cards/category_card.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/cards/medicine_item_card.dart';
+export 'package:dro_health/src/ui/reuseable_widgets/functions/methods.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/icon_widgets/cart_icon.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/icon_widgets/delivery_icons.dart';
 export 'package:dro_health/src/ui/reuseable_widgets/iterable_views/medicine_grid_view.dart';

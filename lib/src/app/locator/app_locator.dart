@@ -1,4 +1,4 @@
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/utils/fake/client.dart';
 import 'package:get_it/get_it.dart';
 

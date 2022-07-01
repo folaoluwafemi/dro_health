@@ -13,7 +13,6 @@ part 'medicine_detail_view.dart';
 class MedicinePage extends StatefulWidget {
   final Medicine medicine;
 
-
   const MedicinePage({
     Key? key,
     required this.medicine,
@@ -24,7 +23,7 @@ class MedicinePage extends StatefulWidget {
 }
 
 class _MedicinePageState extends State<MedicinePage> {
-  PersistentBottomSheetController? sheetController ;
+  PersistentBottomSheetController? sheetController;
 
   @override
   void dispose() {
@@ -53,15 +52,14 @@ class _MedicinePageState extends State<MedicinePage> {
           listener: (context, state) {
             if (state.addedToCart) {
               sheetController = showBottomSheet(
-                context: context,
-                builder: (context) => const AddToCartBottomSheet(),
-                enableDrag: true,
-                backgroundColor: Colors.transparent
-              );
+                  context: context,
+                  builder: (context) => const AddToCartBottomSheet(),
+                  enableDrag: true,
+                  backgroundColor: Colors.transparent);
             }
           },
           child: GestureDetector(
-            onTap: ()async {
+            onTap: () async {
               sheetController?.close();
             },
             child: _MedicineDetailView(
@@ -82,7 +80,7 @@ class AddToCartBottomSheet extends StatelessWidget {
     return BottomSheet(
       backgroundColor: Colors.transparent,
       constraints: const BoxConstraints.tightForFinite(),
-      onClosing: (){
+      onClosing: () {
         Navigator.of(context).pop();
       },
       enableDrag: true,

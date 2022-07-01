@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/models/models.dart';
 
 class MedicineRepository implements MedicineRepositoryInterface {

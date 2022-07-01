@@ -5,6 +5,8 @@ import 'package:dro_health/src/utils/utils.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 
+import '../fake_data/fake_data.dart';
+
 class MockClient extends Mock implements Client {
   @override
   Future<Response> get(
@@ -36,92 +38,4 @@ class MockClient extends Mock implements Client {
       infantsCategory,
     ];
   }
-}
-
-Category headacheCategory = Category(
-  name: Strings.headache,
-  imagePath: Assets.headacheCategory,
-  medicines: [
-    _panadol,
-    redParacetamol,
-    _orangeParacetamol,
-  ],
-);
-Category supplementsCategory = Category(
-  name: Strings.supplements,
-  imagePath: Assets.supplementsCategory,
-  medicines: [
-    _doliprane,
-    _panadol,
-  ],
-);
-Category infantsCategory = Category(
-  name: Strings.infants,
-  imagePath: Assets.infantCategory,
-  medicines: [
-    redParacetamol,
-    _redIbuprofen,
-  ],
-);
-Category coughCategory = Category(
-  name: Strings.cough,
-  imagePath: Assets.coughCategory,
-  medicines: [
-    redParacetamol,
-    _orangeParacetamol,
-    _redIbuprofen,
-    _orangeIbuprofen,
-    _doliprane,
-    _panadol,
-  ],
-);
-
-final Medicine redParacetamol = MedicineModelHelper.fake(
-  name: Strings.paracetamol,
-  imagePath: Assets.redParacetamol,
-  type: MedicineType.tablet,
-);
-
-final Medicine _orangeParacetamol = MedicineModelHelper.fake(
-  name: Strings.paracetamol,
-  imagePath: Assets.orangeParacetamol,
-  type: MedicineType.tablet,
-);
-
-final Medicine _redIbuprofen = MedicineModelHelper.fake(
-  name: Strings.ibuprofen,
-  imagePath: Assets.ibuprofenRed,
-  type: MedicineType.tablet,
-);
-
-final Medicine _orangeIbuprofen = MedicineModelHelper.fake(
-  name: Strings.ibuprofen,
-  imagePath: Assets.ibuprofenOrange,
-  type: MedicineType.tablet,
-);
-
-final Medicine _doliprane = MedicineModelHelper.fake(
-  name: Strings.doliprane,
-  imagePath: Assets.doliprane,
-  type: MedicineType.capsule,
-);
-final Medicine _panadol = MedicineModelHelper.fake(
-  name: Strings.panadol,
-  imagePath: Assets.panadol,
-  type: MedicineType.tablet,
-);
-
-String getUser() {
-  User newUser = _createUser();
-  String rawUser = jsonEncode(UserHelper.toMap(newUser));
-  return rawUser;
-}
-
-User _createUser() {
-  return const User(
-    email: 'random@email.com',
-    name: 'John Doe',
-    cart: [],
-    favorites: [],
-  );
 }

@@ -1,4 +1,4 @@
-import 'package:dro_health/src/data/data.dart';
+import 'package:dro_health/src/data/data_barrel.dart';
 import 'package:dro_health/src/models/models.dart';
 import 'package:flutter_test/flutter_test.dart';
 
