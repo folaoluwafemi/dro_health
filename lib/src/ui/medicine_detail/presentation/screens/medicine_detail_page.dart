@@ -9,6 +9,20 @@ import 'package:dro_health/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+part '../widgets/add_to_cart.dart';
+
+part '../widgets/medicine_image.dart';
+
+part '../widgets/medicine_price.dart';
+
+part '../widgets/pack_counter.dart';
+
+part '../widgets/product_detail.dart';
+
+part '../widgets/seller_detail.dart';
+
+part '../widgets/similar_products_list.dart';
+
 part 'medicine_detail_view.dart';
 
 class MedicinePage extends StatefulWidget {

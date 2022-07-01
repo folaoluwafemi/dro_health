@@ -1,8 +1,8 @@
 import 'package:dro_health/src/models/models.dart';
-import 'package:dro_health/src/ui/cart/presentation/cart_page.dart';
+import 'package:dro_health/src/ui/cart/presentation/screens/cart_page.dart';
 import 'package:dro_health/src/ui/category/presentation/category_page.dart';
 import 'package:dro_health/src/ui/home/presentation/home_screen/home_page.dart';
-import 'package:dro_health/src/ui/medicine_detail/presentation/medicine_detail_page.dart';
+import 'package:dro_health/src/ui/medicine_detail/presentation/screens/medicine_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

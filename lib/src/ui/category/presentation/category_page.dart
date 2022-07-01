@@ -1,5 +1,4 @@
 import 'package:dro_health/src/app/app_barrel.dart';
-import 'package:dro_health/src/app/theme/colors.dart';
 import 'package:dro_health/src/models/models.dart';
 import 'package:dro_health/src/ui/category/bloc/category_bloc.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/reusable_widgets.dart';
