@@ -1,6 +1,5 @@
 part of '../screens/cart_page.dart';
 
-
 class _CheckoutBottomWidget extends StatelessWidget {
   final double totalPrice;
 
@@ -29,7 +28,8 @@ class _CheckoutBottomWidget extends StatelessWidget {
           ),
           FilledButton(
             width: context.queryScreenSize.width * 0.5,
-            onPressed: () => context.read<CartBloc>().add(CheckedOut()),
+            onPressed: () async =>
+                await context.read<CartCubit>().addCartToUserAndCheckout(),
             child: AppText.filledButton(Strings.checkoutU),
           ),
         ],

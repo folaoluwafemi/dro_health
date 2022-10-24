@@ -17,7 +17,7 @@ class _SearchWidgetState extends State<_SearchWidget> {
       print('search widget building');
       print('search widget building');
       print('search widget building');
-      searchedMedicines = builderContext.watch<HomeBloc>().state.medicines;
+      searchedMedicines = builderContext.watch<HomeCubit>().state.medicines;
       if (searchedMedicines.isEmpty) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

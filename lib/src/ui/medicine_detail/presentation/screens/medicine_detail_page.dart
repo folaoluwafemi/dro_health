@@ -49,9 +49,9 @@ class _MedicinePageState extends State<MedicinePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MedicineDetailBloc(
+      create: (_) => MedicineDetailCubit(
         widget.medicine,
-      )..add(SimilarProductsFetched()),
+      )..fetchSimilarProducts(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size(
@@ -74,7 +74,7 @@ class _MedicinePageState extends State<MedicinePage> {
             title: Strings.pharmacyText,
           ),
         ),
-        body: BlocListener<MedicineDetailBloc, MedicineDetailState>(
+        body: BlocListener<MedicineDetailCubit, MedicineDetailState>(
           listener: (context, state) {
             if (state.addedToCart) {
               sheetController = showBottomSheet(

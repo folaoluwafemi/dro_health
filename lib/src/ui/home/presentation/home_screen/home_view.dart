@@ -17,11 +17,11 @@ class _HomeViewState extends State<_HomeView> {
   void initState() {
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        context.read<HomeBloc>().add(StartSearch());
+        context.read<HomeCubit>().startSearch();
       }
     });
+    categories = context.read<HomeCubit>().state.categories;
     super.initState();
-    categories = context.read<HomeBloc>().state.categories;
   }
 
   @override
@@ -33,45 +33,44 @@ class _HomeViewState extends State<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    print('building home view');
-    return SafeArea(
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size(
-            double.maxFinite,
-            151,
-          ),
-          child: Builder(builder: (appBarContext) {
-            return Appbar(
-              onBackPressed: appBarContext.watch<HomeBloc>().state.search
-                  ? _closeSearch
-                  : null,
-              icon: const DeliveryIcon(),
-              title: Strings.pharmacyText,
-              searchBar: AppTextField(
-                controller: _searchController,
-                onChanged: _onSearchTextChanged,
-                icon: Icon(
-                  Icons.search,
-                  color: context.theme.iconTheme.color,
-                ),
-                onTap: () {
-                  context.read<HomeBloc>().add(StartSearch());
-                },
-                hintText: Strings.search,
-              ),
-            );
-          }),
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    });
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size(
+          double.maxFinite,
+          151,
         ),
-        extendBodyBehindAppBar: true,
-        body: SingleChildScrollView(
+        child: Builder(builder: (appBarContext) {
+          return Appbar(
+            onBackPressed: appBarContext.watch<HomeCubit>().state.search
+                ? _closeSearch
+                : null,
+            icon: const DeliveryIcon(),
+            title: Strings.pharmacyText,
+            searchBar: AppTextField(
+              controller: _searchController,
+              onChanged: _onSearchTextChanged,
+              icon: Icon(
+                Icons.search,
+                color: context.theme.iconTheme.color,
+              ),
+              onTap: () => context.read<HomeCubit>().startSearch(),
+              hintText: Strings.search,
+            ),
+          );
+        }),
+      ),
+      body: SafeArea(
+        top: false,
+        child: SingleChildScrollView(
           child: Container(
             constraints: const BoxConstraints.tightForFinite(),
             child: Column(
               children: [
-                boxHeight(141),
                 const DeliveryLocation(),
-                BlocBuilder<HomeBloc, HomeState>(
+                BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) {
                     if (state.search == true) {
                       return const _SearchWidget();
@@ -111,22 +110,22 @@ class _HomeViewState extends State<_HomeView> {
             ),
           ),
         ),
-        floatingActionButton: Builder(builder: (checkoutContext) {
-          return CheckoutButton(
-            items: checkoutContext.watch<UserBloc>().state.user?.cart.length ?? 0,
-            expanded: !(checkoutContext.watch<HomeBloc>().state.search),
-          );
-        }),
-        bottomNavigationBar: context.watch<HomeBloc>().state.search
-            ? null
-            : BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                items: navMap.values.toList(),
-                currentIndex: 2,
-                showUnselectedLabels: true,
-                showSelectedLabels: true,
-              ),
       ),
+      floatingActionButton: Builder(builder: (checkoutContext) {
+        return CheckoutButton(
+          items: checkoutContext.watch<UserBloc>().state.user?.cart.length ?? 0,
+          expanded: !(checkoutContext.watch<HomeCubit>().state.search),
+        );
+      }),
+      bottomNavigationBar: context.watch<HomeCubit>().state.search
+          ? null
+          : BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              items: navMap.values.toList(),
+              currentIndex: 2,
+              showUnselectedLabels: true,
+              showSelectedLabels: true,
+            ),
     );
   }
 
@@ -136,14 +135,12 @@ class _HomeViewState extends State<_HomeView> {
       _focusNode.unfocus();
     }
     SystemChannels.textInput.invokeListMethod('TextInput.hide');
-    context.read<HomeBloc>().add(EndSearch());
+    context.read<HomeCubit>().endSearch();
   }
 
   void _onSearchTextChanged(String? value) {
-    if (value == null) {
-      return;
-    }
-    context.read<HomeBloc>().add(SearchEvent(query: value));
+    if (value == null) return;
+    context.read<HomeCubit>().search(value);
   }
 }
 

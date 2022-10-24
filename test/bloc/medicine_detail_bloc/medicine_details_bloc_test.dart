@@ -7,9 +7,9 @@ import '../../utils/fake_data/fake_data.dart';
 import '../../utils/mocks/mock_client.dart';
 
 void main() {
-  late MedicineDetailBloc bloc;
+  late MedicineDetailCubit bloc;
   setUp(() {
-    bloc = MedicineDetailBloc(
+    bloc = MedicineDetailCubit(
       redParacetamol,
       repository: MedicineRepository(
         PharmacySource(
@@ -37,7 +37,7 @@ void main() {
     test('on SimilarProductsFetched similarProducts list should not be empty',
         () async {
       //act
-      bloc.add(SimilarProductsFetched());
+      bloc.fetchSimilarProducts();
       await Future.delayed(Duration.zero);
       expect(bloc.state.similarProducts.isNotEmpty, equals(true));
     });
@@ -46,7 +46,7 @@ void main() {
         'on PackedQuantityChanged state\'s packetQuantity should be equal to added quantity',
         () async {
       //act
-      bloc.add(const PacketQuantityChanged(2));
+      bloc.changePacketQuantity(2);
       await Future.delayed(Duration.zero);
       expect(bloc.state.packQuantity, equals(2)); // same as added quantity
     });
@@ -54,7 +54,7 @@ void main() {
     test('on AddToCart added state\'s added to cart should be equal to true',
         () async {
       //act
-      bloc.add(AddedToCart());
+      bloc.addToCart();
       await Future.delayed(Duration.zero);
       expect(bloc.state.addedToCart, equals(true)); // same as added quantity
     });

@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../utils/mocks/mock_client.dart';
 
 void main() {
-  late CategoryBloc bloc;
+  late CategoryCubit bloc;
   setUp(() {
-    bloc = CategoryBloc(
+    bloc = CategoryCubit(
       repository: CategoryRepository(
         PharmacySource(
           MockClient(),
@@ -36,17 +36,19 @@ void main() {
         'on fetch categories list added blocState\'s categories is not empty and status is loaded',
         () async {
       //act
-      bloc.add(FetchCategoryList());
+      bloc.fetchCategories();
       await Future.delayed(Duration.zero);
       expect(bloc.state.categories.isNotEmpty, equals(true));
       expect(bloc.state.status, equals(StateStatus.loaded));
       expect(bloc.state.detailIndex, equals(null));
     });
-    test('on SwitchDetails added blocs state index is equal to the added event detail index', () async {
+    test(
+        'on SwitchDetails added blocs state index is equal to the added event detail index',
+        () async {
       //act
-      bloc.add(FetchCategoryList());
+      bloc.fetchCategories();
       await Future.delayed(Duration.zero);
-      bloc.add(const SwitchDetails(detailIndex: 0));
+      bloc.switchDetails(detailIndex: 0);
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.detailIndex, equals(0));

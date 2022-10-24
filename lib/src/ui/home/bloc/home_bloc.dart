@@ -7,27 +7,24 @@ import 'package:dro_health/src/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'home_event.dart';
-
 part 'home_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> with ErrorHandler {
+class HomeCubit extends Cubit<HomeState> with ErrorHandler {
   final CategoryRepositoryInterface _repo;
 
-  HomeBloc({
+  HomeCubit({
     CategoryRepositoryInterface? categoryRepository,
   })  : _repo = categoryRepository ?? locator<CategoryRepositoryInterface>(),
-        super(const HomeState()) {
-    on<FetchCategories>(_fetchCategories);
-    on<StartSearch>(_startSearch);
-    on<EndSearch>(_endSearch);
-    on<SearchEvent>(_search);
-  }
+        super(const HomeState());
 
-  Future<void> _fetchCategories(
-    FetchCategories event,
-    Emitter<HomeState> emit,
-  ) async {
+  // {
+  //   on<FetchCategories>(fetchCategories);
+  //   on<StartSearch>(startSearch);
+  //   on<EndSearch>(endSearch);
+  //   on<SearchEvent>(search);
+  // }
+
+  Future<void> fetchCategories() async {
     simpleErrorHandler(computation: () async {
       List<Category> categories = await _repo.getCategories();
       List<Medicine> medicines = getMedicinesFromCategories(categories);
@@ -41,19 +38,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with ErrorHandler {
     });
   }
 
-  Future<void> _startSearch(
-    StartSearch event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> startSearch() async {
     emit(
       state.copyWith(search: true),
     );
   }
 
-  void _endSearch(
-    EndSearch event,
-    Emitter<HomeState> emit,
-  ) {
+  void endSearch() {
     emit(
       state.copyWith(
         medicines: getMedicinesFromCategories(
@@ -64,8 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with ErrorHandler {
     );
   }
 
-  void _search(SearchEvent event, Emitter<HomeState> emit) {
-    String query = event.query;
+  void search(String query) {
     List<Medicine> medicines = getMedicinesFromCategories(state.categories);
 
     List<Medicine> searchedMedicines = medicines.where((Medicine medicine) {

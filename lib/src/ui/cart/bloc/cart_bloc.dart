@@ -10,20 +10,19 @@ part 'cart_event.dart';
 
 part 'cart_state.dart';
 
-class CartBloc extends Bloc<CartEvent, CartState> {
+class CartCubit extends Cubit<CartState> {
   final UserBloc userBloc;
 
-  CartBloc({required this.userBloc}) : super(CartState()) {
-    on<CartFetched>(_fetchCart);
-    on<CartItemCountChanged>(_changeCartItemCount);
-    on<CartItemRemoved>(_removeCartItem);
-    on<CheckedOut>(_addCartToUserAndCheckout);
-  }
+  CartCubit({required this.userBloc}) : super(CartState());
 
-  void _fetchCart(
-    CartFetched event,
-    Emitter<CartState> emit,
-  ) {
+  // {
+  //   on<CartFetched>(_fetchCart);
+  //   on<CartItemCountChanged>(_changeCartItemCount);
+  //   on<CartItemRemoved>(_removeCartItem);
+  //   on<CheckedOut>(_addCartToUserAndCheckout);
+  // }
+
+  void fetchCart() {
     try {
       if (userBloc.state.user == null) {
         userBloc.add(UserFetched());
@@ -41,37 +40,31 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  FutureOr<void> _changeCartItemCount(
-    CartItemCountChanged event,
-    Emitter<CartState> emit,
-  ) {
-    CartItem item = event.item.copyWith(quantity: event.newCount);
+  FutureOr<void> changeCartItemCount({
+    required CartItem item,
+    required int newCount,
+  }) {
+    CartItem tempItem = item.copyWith(quantity: newCount);
 
     List<CartItem> newCart = state.cartItems;
 
-    int index = newCart.indexWhere((element) => element == event.item);
+    int index = newCart.indexWhere((element) => element == item);
     newCart.removeAt(index);
-    newCart.replaceRange(index, index, [item]);
+    newCart.replaceRange(index, index, [tempItem]);
 
     emit(state.copyWith(cartItems: newCart));
   }
 
-  FutureOr<void> _removeCartItem(
-    CartItemRemoved event,
-    Emitter<CartState> emit,
-  ) {
+  FutureOr<void> removeCartItem(CartItem item) {
     List<CartItem> cart = state.cartItems;
-    cart.remove(event.item);
+    cart.remove(item);
 
     emit(state.copyWith(
       cartItems: cart,
     ));
   }
 
-  FutureOr<void> _addCartToUserAndCheckout(
-    CheckedOut event,
-    Emitter<CartState> emit,
-  ) async {
+  FutureOr<void> addCartToUserAndCheckout() async {
     userBloc.add(UserCartChanged(state.cartItems));
 
     ///todo: checkout

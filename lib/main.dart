@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   runApp(const PharmacyApp());
 }
@@ -20,11 +21,11 @@ class PharmacyApp extends StatelessWidget {
         BlocProvider<UserBloc>(
           create: (context) => UserBloc()..add(UserFetched()),
         ),
-        BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(),
+        BlocProvider<HomeCubit>(
+          create: (context) => HomeCubit(),
         ),
-        BlocProvider<CategoryBloc>(
-          create: (context) => CategoryBloc()..add(FetchCategoryList()),
+        BlocProvider<CategoryCubit>(
+          create: (context) => CategoryCubit()..fetchCategories(),
         ),
       ],
       child: MainWrapper(

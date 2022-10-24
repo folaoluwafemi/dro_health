@@ -1,5 +1,4 @@
 import 'package:dro_health/src/app/theme/colors.dart';
-import 'package:dro_health/src/ui/reuseable_widgets/functions/methods.dart';
 import 'package:dro_health/src/ui/reuseable_widgets/text/app_text.dart';
 import 'package:dro_health/src/utils/constants/assets.dart';
 import 'package:dro_health/src/utils/constants/strings.dart';
@@ -43,9 +42,9 @@ class Appbar extends StatelessWidget {
         ),
       ),
       padding: const EdgeInsets.only(
-        left: 24,
+        left: 18,
         right: 24,
-        bottom: 21,
+        bottom: 18,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -58,23 +57,21 @@ class Appbar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (onBackPressed != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 1.0, right: 7),
-                      child: InkWell(
-                        onTap: onBackPressed!,
-                        child: const Icon(Icons.arrow_back_ios),
-                      ),
+                    IconButton(
+                      onPressed: onBackPressed!,
+                      icon: const Icon(Icons.arrow_back_ios),
                     ),
-                  AppText.titleWhite(
-                    title,
-                  ),
+                  AppText.titleWhite(title),
                 ],
               ),
               if (icon != null) icon!,
             ],
           ),
-          boxHeight(21),
-          if (searchBar != null) searchBar!,
+          if (searchBar != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 21.0),
+              child: searchBar!,
+            ),
         ],
       ),
     );

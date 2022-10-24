@@ -35,25 +35,22 @@ class CartAppBar extends StatelessWidget {
       ),
       alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.only(
-        left: 24,
+        left: 20,
         right: 24,
-        bottom: 30,
+        bottom: 15,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (onBackPressed != null)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 1.0, right: 7),
-              child: InkWell(
-                onTap: onBackPressed!,
-                child: const Icon(Icons.arrow_back_ios),
-              ),
+            IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: onBackPressed!,
+              icon: const Icon(Icons.arrow_back_ios),
             ),
           const CartIcon(
             hasItems: false,
           ),
-          boxWidth(15),
           AppText.titleWhite(
             Strings.cart,
           ),

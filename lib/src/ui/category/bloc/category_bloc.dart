@@ -11,22 +11,21 @@ part 'category_event.dart';
 
 part 'category_state.dart';
 
-class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
+class CategoryCubit extends Cubit<CategoryState> {
   final CategoryRepositoryInterface repo;
 
-  CategoryBloc({
+  CategoryCubit({
     CategoryRepositoryInterface? repository,
   })  : repo = repository ?? locator<CategoryRepositoryInterface>(),
-        super(const CategoryState()) {
-    on<FetchCategoryList>(_fetchCategories);
-    on<PageClosed>(_handlePageDisposed);
-    on<SwitchDetails>(_switchDetails);
-  }
+        super(const CategoryState());
 
-  Future<void> _fetchCategories(
-    FetchCategoryList event,
-    Emitter<CategoryState> emit,
-  ) async {
+  // {
+  //   on<FetchCategoryList>(_fetchCategories);
+  //   on<PageClosed>(_handlePageDisposed);
+  //   on<SwitchDetails>(_switchDetails);
+  // }
+
+  Future<void> fetchCategories() async {
     List<Category> categories = [];
     if (state.categories.isEmpty) {
       categories.addAll(await repo.getCategories());
@@ -45,8 +44,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     );
   }
 
-  Future<void> _switchDetails(
-      SwitchDetails event, Emitter<CategoryState> emit) async {
+  Future<void> switchDetails({int? detailIndex}) async {
     List<Category>? categories;
     if (state.categories.isEmpty) {
       categories = await repo.getCategories();
@@ -54,12 +52,12 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     emit(
       state.copyWith(
         categories: categories,
-        detailIndex: event.detailIndex,
+        detailIndex: detailIndex,
       ),
     );
   }
 
-  void _handlePageDisposed(PageClosed event, Emitter<CategoryState> emit) {
+  void disposePage() {
     emit(
       state.copyWith(
         categories: const [],

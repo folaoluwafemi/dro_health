@@ -24,18 +24,16 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CartBloc>(
-      create: (context) => CartBloc(
+    return BlocProvider<CartCubit>(
+      create: (context) => CartCubit(
         userBloc: context.read<UserBloc>(),
-      )..add(CartFetched()),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size(double.maxFinite, 120),
-            child: CartAppBar(onBackPressed: () => Navigator.of(context).pop()),
-          ),
-          body: const _CartView(),
+      )..fetchCart(),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size(double.maxFinite, 120),
+          child: CartAppBar(onBackPressed: () => Navigator.of(context).pop()),
         ),
+        body: const SafeArea(child: _CartView()),
       ),
     );
   }

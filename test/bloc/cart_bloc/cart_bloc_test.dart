@@ -17,12 +17,12 @@ void main() {
     ),
   );
 
-  late CartBloc bloc;
+  late CartCubit bloc;
   setUp(() async {
     userBloc.add(UserFetched());
     await Future.delayed(Duration.zero);
     userBloc.add(UserCartItemAdded(cartItem1));
-    bloc = CartBloc(
+    bloc = CartCubit(
       userBloc: userBloc,
     );
   });
@@ -43,16 +43,16 @@ void main() {
   group('events tests', () {
     test('on CartFetched state\'s cart list is equal to user\'s cart list',
         () async {
-      bloc.add(CartFetched());
+      bloc.fetchCart();
       await Future.delayed(Duration.zero);
       expect(bloc.state.cartItems, equals(userBloc.state.user?.cart));
     });
     test(
         'on CartItemCountChanged the corresponding cartItem\'s quantity changes',
         () async {
-      bloc.add(CartFetched());
+      bloc.fetchCart();
       await Future.delayed(Duration.zero);
-      bloc.add(CartItemCountChanged(item: cartItem1, newCount: 3));
+      bloc.changeCartItemCount(item: cartItem1, newCount: 3);
       await Future.delayed(Duration.zero);
       expect(bloc.state.cartItems[0], cartItem1.copyWith(quantity: 3));
     });
@@ -61,10 +61,10 @@ void main() {
         ' in both bloc state\'s cartItem list and userBloc user cart item list',
         () async {
       //setup
-      bloc.add(CartFetched());
+      bloc.fetchCart();
       await Future.delayed(Duration.zero);
       //act
-      bloc.add(CartItemRemoved(cartItem1));
+      bloc.removeCartItem(cartItem1);
       await Future.delayed(Duration.zero);
       expect(bloc.state.cartItems.contains(cartItem1), equals(false));
       expect(userBloc.state.user?.cart.contains(cartItem1), equals(false));
@@ -73,10 +73,10 @@ void main() {
         'on CartItemRemoved the corresponding cartItem\'s should not exist'
         ' in bloc state\'s cartItem list', () async {
       //setup
-      bloc.add(CartFetched());
+      bloc.fetchCart();
       await Future.delayed(Duration.zero);
       //act
-      bloc.add(CartItemRemoved(cartItem1));
+      bloc.removeCartItem(cartItem1);
       await Future.delayed(Duration.zero);
       expect(bloc.state.cartItems.contains(cartItem1), equals(false));
     });
@@ -84,20 +84,20 @@ void main() {
         'on CheckedOut userBloc state\'s cartItem list should be equal to'
         ' bloc state\'s cart item list', () async {
       //setup
-      bloc.add(CartFetched());
+      bloc.fetchCart();
       await Future.delayed(Duration.zero);
       //act
-      bloc.add(CartItemCountChanged(item: cartItem1, newCount: 3));
+      bloc.changeCartItemCount(item: cartItem1, newCount: 3);
       await Future.delayed(Duration.zero);
-      bloc.add(CheckedOut());
+      bloc.addCartToUserAndCheckout();
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.cartItems, equals(userBloc.state.user?.cart));
 
       //act 2
-      bloc.add(CartItemRemoved(cartItem1));
+      bloc.removeCartItem(cartItem1);
       await Future.delayed(Duration.zero);
-      bloc.add(CheckedOut());
+      bloc.addCartToUserAndCheckout();
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.cartItems, equals(userBloc.state.user?.cart));

@@ -50,15 +50,14 @@ class _MedicineDetailView extends StatelessWidget {
                         children: [
                           Builder(builder: (context) {
                             int count = context
-                                .watch<MedicineDetailBloc>()
+                                .watch<MedicineDetailCubit>()
                                 .state
                                 .packQuantity;
                             return PackCounter(
                               count: count,
-                              onChanged: (int newVal) =>
-                                  context.read<MedicineDetailBloc>().add(
-                                        PacketQuantityChanged(newVal),
-                                      ),
+                              onChanged: (int newVal) => context
+                                  .read<MedicineDetailCubit>()
+                                  .changePacketQuantity(newVal),
                             );
                           }),
                           boxWidth(15),
@@ -109,8 +108,10 @@ class _MedicineDetailView extends StatelessWidget {
                   boxHeight(44),
                   _AddToCartButton(
                     onPressed: () {
-                      int packQuantity =
-                          context.read<MedicineDetailBloc>().state.packQuantity;
+                      int packQuantity = context
+                          .read<MedicineDetailCubit>()
+                          .state
+                          .packQuantity;
                       if (packQuantity == 0) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -123,11 +124,15 @@ class _MedicineDetailView extends StatelessWidget {
                         );
                         return;
                       }
-                      context.read<UserBloc>().add(UserCartItemAdded(CartItem(
-                            quantity: packQuantity,
-                            medicine: medicine,
-                          )));
-                      context.read<MedicineDetailBloc>().add(AddedToCart());
+                      context.read<UserBloc>().add(
+                            UserCartItemAdded(
+                              CartItem(
+                                quantity: packQuantity,
+                                medicine: medicine,
+                              ),
+                            ),
+                          );
+                      context.read<MedicineDetailCubit>().addToCart();
                     },
                   ),
                   boxHeight(27),
@@ -140,12 +145,3 @@ class _MedicineDetailView extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@ class _CartView extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints.tightForFinite(),
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: BlocBuilder<CartBloc, CartState>(
+      child: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           return Column(
             children: [
@@ -38,7 +38,3 @@ class _CartView extends StatelessWidget {
     );
   }
 }
-
-
-
-

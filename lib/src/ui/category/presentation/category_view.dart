@@ -10,7 +10,7 @@ class _CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryBloc, CategoryState>(
+    return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
         return GridView.builder(
           padding: EdgeInsets.symmetric(
@@ -27,13 +27,9 @@ class _CategoryView extends StatelessWidget {
             return CategoryCard(
               width: context.queryScreenSize.width -
                   (context.queryScreenSize.width * 0.089),
-              onPressed: () {
-                context.read<CategoryBloc>().add(
-                      SwitchDetails(
-                        detailIndex: index,
-                      ),
-                    );
-              },
+              onPressed: () => context
+                  .read<CategoryCubit>()
+                  .switchDetails(detailIndex: index),
               category: category.name,
               imagePath: category.imagePath,
             );

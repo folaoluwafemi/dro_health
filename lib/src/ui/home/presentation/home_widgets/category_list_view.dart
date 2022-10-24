@@ -23,7 +23,7 @@ class _CategoriesListView extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  context.read<CategoryBloc>().add(FetchCategoryList());
+                  context.read<CategoryCubit>().fetchCategories();
                   Navigator.of(context).pushNamed(Routes.categoryPage);
                 },
                 child: const AppText(
@@ -46,8 +46,8 @@ class _CategoriesListView extends StatelessWidget {
               return CategoryCard(
                 onPressed: () {
                   context
-                      .read<CategoryBloc>()
-                      .add(SwitchDetails(detailIndex: index));
+                      .read<CategoryCubit>()
+                      .switchDetails(detailIndex: index);
                   Navigator.of(context).pushNamed(Routes.categoryPage);
                 },
                 category: category.name,

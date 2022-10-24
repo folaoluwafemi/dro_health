@@ -1,4 +1,5 @@
 part of '../screens/cart_page.dart';
+
 class _CartListItem extends StatelessWidget {
   final CartItem cartItem;
   final int index;
@@ -46,15 +47,16 @@ class _CartListItem extends StatelessWidget {
             _CartCountDropDown(
               onChanged: (int? value) {
                 if (value == null) return;
-                context.read<CartBloc>().add(
-                  CartItemCountChanged(item: cartItem, newCount: value),
-                );
+                context.read<CartCubit>().changeCartItemCount(
+                      item: cartItem,
+                      newCount: value,
+                    );
               },
               initialValue: cartItem.quantity,
             ),
             _RemoveWidget(
               onPressed: () =>
-                  context.read<CartBloc>().add(CartItemRemoved(cartItem)),
+                  context.read<CartCubit>().removeCartItem(cartItem),
             ),
           ],
         )

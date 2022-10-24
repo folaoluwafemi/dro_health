@@ -11,9 +11,9 @@ void main() {
   CategoryRepository mockRepo = CategoryRepository(mockSource);
 
   group('tests for home blocs', () {
-    late HomeBloc bloc;
+    late HomeCubit bloc;
     setUp(() {
-      bloc = HomeBloc(categoryRepository: mockRepo);
+      bloc = HomeCubit(categoryRepository: mockRepo);
     });
 
     blocTest(
@@ -23,7 +23,7 @@ void main() {
     );
     test('when the fetch categories is added state is not empty', () async {
       //act
-      bloc.add(FetchCategories());
+      bloc.fetchCategories();
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.status, equals(StateStatus.loaded));
@@ -34,7 +34,7 @@ void main() {
         'when the StartSearch is added state emit a HomeState whose search is true',
         () async {
       //act
-      bloc.add(StartSearch());
+      bloc.startSearch();
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.search, equals(true));
@@ -43,7 +43,7 @@ void main() {
         'when the EndSearch is added state emit a HomeState whose search is false',
         () async {
       //act
-      bloc.add(EndSearch());
+      bloc.endSearch();
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.search, equals(false));
@@ -52,9 +52,9 @@ void main() {
         'when the SearchEvent is added homeBloc emits a HomeState with a list '
         'of medicines corresponding to the query', () async {
       //act
-      bloc.add(FetchCategories());
+      bloc.fetchCategories();
       await Future.delayed(Duration.zero);
-      bloc.add(const SearchEvent(query: ''));
+      bloc.search('');
       await Future.delayed(Duration.zero);
 
       expect(bloc.state.search, equals(true));

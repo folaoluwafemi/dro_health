@@ -12,24 +12,22 @@ part 'medicine_detail_event.dart';
 
 part 'medicine_detail_state.dart';
 
-class MedicineDetailBloc
-    extends Bloc<MedicineDetailEvent, MedicineDetailState> {
+class MedicineDetailCubit extends Cubit<MedicineDetailState> {
   final MedicineRepositoryInterface repo;
 
-  MedicineDetailBloc(
+  MedicineDetailCubit(
     Medicine medicine, {
     MedicineRepositoryInterface? repository,
   })  : repo = repository ?? locator<MedicineRepositoryInterface>(),
-        super(MedicineDetailState(medicine)) {
-    on<SimilarProductsFetched>(_fetchSimilarProducts);
-    on<PacketQuantityChanged>(_changePacketQuantity);
-    on<AddedToCart>(_addToCart);
-  }
+        super(MedicineDetailState(medicine));
 
-  Future<void> _fetchSimilarProducts(
-    SimilarProductsFetched event,
-    Emitter<MedicineDetailState> emit,
-  ) async {
+  // {
+  //   on<SimilarProductsFetched>(_fetchSimilarProducts);
+  //   on<PacketQuantityChanged>(_changePacketQuantity);
+  //   on<AddedToCart>(_addToCart);
+  // }
+
+  Future<void> fetchSimilarProducts() async {
     Medicine medicine = state.currentMedicine;
 
     try {
@@ -51,21 +49,15 @@ class MedicineDetailBloc
     }
   }
 
-  FutureOr<void> _addToCart(
-    AddedToCart event,
-    Emitter<MedicineDetailState> emit,
-  ) {
+  FutureOr<void> addToCart() {
     emit(state.copyWith(
       addedToCart: true,
     ));
   }
 
-  void _changePacketQuantity(
-    PacketQuantityChanged event,
-    Emitter<MedicineDetailState> emit,
-  ) {
+  void changePacketQuantity(int packCount) {
     emit(state.copyWith(
-      packQuantity: event.packCount,
+      packQuantity: packCount,
     ));
   }
 }

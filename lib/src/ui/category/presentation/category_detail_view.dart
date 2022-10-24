@@ -25,7 +25,7 @@ class _CategoryDetailView extends StatelessWidget {
                   AppText.titleMedium(Strings.categoriesU),
                   TextButton(
                     onPressed: () {
-                      context.read<CategoryBloc>().add(const SwitchDetails());
+                      context.read<CategoryCubit>().switchDetails();
                     },
                     child: const AppText(
                       Strings.viewAllU,
@@ -42,17 +42,16 @@ class _CategoryDetailView extends StatelessWidget {
                 // shrinkWrap: true,
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
-                  int? stateIndex = context.read<CategoryBloc>().state.detailIndex;
+                  int? stateIndex =
+                      context.read<CategoryCubit>().state.detailIndex;
                   return CategoryCard(
-                    onPressed: () {
-                    context.read<CategoryBloc>().add(
-                          SwitchDetails(detailIndex: index),
-                        );
-                  },
-                  selected: stateIndex == index,
-                  category: categories[index].name,
-                  imagePath: categories[index].imagePath,
-                );
+                    onPressed: () => context
+                        .read<CategoryCubit>()
+                        .switchDetails(detailIndex: index),
+                    selected: stateIndex == index,
+                    category: categories[index].name,
+                    imagePath: categories[index].imagePath,
+                  );
                 },
               ),
             ),
@@ -67,7 +66,7 @@ class _CategoryDetailView extends StatelessWidget {
             boxHeight(26),
             Builder(builder: (medsContext) {
               int index =
-                  medsContext.watch<CategoryBloc>().state.detailIndex ?? 0;
+                  medsContext.watch<CategoryCubit>().state.detailIndex ?? 0;
               List<Medicine> medicines = categories[index].medicines;
               return MedicineGridView(
                 medicines: medicines,

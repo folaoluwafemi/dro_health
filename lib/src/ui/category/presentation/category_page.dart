@@ -26,12 +26,9 @@ class CategoryPage extends StatelessWidget {
         child: Builder(builder: (context) {
           return Appbar(
             onBackPressed: () {
-              // if (context.read<CategoryBloc>().state.detailIndex == null) {
-              context.read<CategoryBloc>().add(PageClosed());
+              context.read<CategoryCubit>().disposePage();
               Navigator.of(context).pop();
               return;
-              // }
-              // context.read<CategoryBloc>().add(const SwitchDetails());
             },
             icon: Builder(builder: (builderContext) {
               return CartIcon(
@@ -47,7 +44,7 @@ class CategoryPage extends StatelessWidget {
           );
         }),
       ),
-      body: BlocBuilder<CategoryBloc, CategoryState>(
+      body: BlocBuilder<CategoryCubit, CategoryState>(
         builder: (context, state) {
           if (state.detailIndex != null) {
             return _CategoryDetailView(

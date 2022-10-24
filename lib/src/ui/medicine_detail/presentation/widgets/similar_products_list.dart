@@ -7,7 +7,7 @@ class _SimilarProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (listViewContext) {
       List<Medicine> similarProducts =
-          listViewContext.watch<MedicineDetailBloc>().state.similarProducts;
+          listViewContext.watch<MedicineDetailCubit>().state.similarProducts;
       return SizedBox(
         height: 250,
         child: similarProducts.isEmpty
